@@ -21,7 +21,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             MasterView(dates: $dates)
-                .navigationBarTitle(Text("Master"))
+                .navigationBarTitle(Text("test"))
                 .navigationBarItems(
                     leading: EditButton(),
                     trailing: Button(
