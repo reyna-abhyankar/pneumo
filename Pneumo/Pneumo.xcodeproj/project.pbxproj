@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20DCAF7224B2FEC900BA342C /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DCAF7124B2FEC900BA342C /* NavigationView.swift */; };
 		82CB560224B269D600A8798C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CB560124B269D600A8798C /* AppDelegate.swift */; };
 		82CB560424B269D600A8798C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CB560324B269D600A8798C /* SceneDelegate.swift */; };
 		82CB560624B269D600A8798C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CB560524B269D600A8798C /* ContentView.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		20DCAF7124B2FEC900BA342C /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
 		82CB55FE24B269D600A8798C /* Pneumo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pneumo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82CB560124B269D600A8798C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82CB560324B269D600A8798C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				82CB560C24B269D900A8798C /* LaunchScreen.storyboard */,
 				82CB560F24B269D900A8798C /* Info.plist */,
 				82CB560924B269D900A8798C /* Preview Content */,
+				20DCAF7124B2FEC900BA342C /* NavigationView.swift */,
 			);
 			path = Pneumo;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 			files = (
 				82CB560224B269D600A8798C /* AppDelegate.swift in Sources */,
 				82CB560424B269D600A8798C /* SceneDelegate.swift in Sources */,
+				20DCAF7224B2FEC900BA342C /* NavigationView.swift in Sources */,
 				82CB560624B269D600A8798C /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
