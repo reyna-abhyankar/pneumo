@@ -1,6 +1,6 @@
 //
 //  Navigation.swift
-//  Swift UI Practice 2
+//  Pneumo
 //
 //  Created by Alice Chien on 7/5/20.
 //  Copyright © 2020 Alice Chien. All rights reserved.
@@ -31,9 +31,7 @@ struct Navigation: View {
                    .offset(y:-30)
 
                 ForEach(buttons, id: \.id) { button in
-                    NavigationLink(destination: DetailView()
-                        .navigationBarHidden(true)
-                        .navigationBarTitle("")) {
+                    NavigationLink(destination: DetailView(text: button.text)) {
                         VStack {
                             Image(systemName: button.imageName)
                                 .padding(40)

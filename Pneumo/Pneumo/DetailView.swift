@@ -9,14 +9,15 @@
 import SwiftUI
 
 struct DetailView: View {
+    let text: String
     
     var body: some View {
-        Text("Hello world")
+        Text("\(text)")
     }
 }
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView()
+        DetailView(text: "Preview")
     }
 }
