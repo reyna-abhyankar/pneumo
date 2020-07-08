@@ -8,64 +8,43 @@
 
 import SwiftUI
 
-struct Navigation: View {
-    var body: some View {
-        //VStack {
-            
-            
-            VStack(spacing: 40){
-                Text("WELCOME")
-                    .font(.system(size: 50))
-                .fontWeight(.ultraLight)
-                .offset(y:-30)
-                
-                Button(action: {}) {
-                    VStack {
-                        Image(systemName: "camera.viewfinder")
-                        .padding(35)
-                        .font(.system(size: 70, weight: .thin))
-                        .foregroundColor(.gray)
-                        .overlay(
-                            Circle()
-                                .stroke(Color.gray, lineWidth: 2))
-                        Text("SCAN")
-                        .foregroundColor(Color.purple)
-                    }
-                }
-                
-                Button(action: {}) {
-                    VStack {
-                        Image(systemName: "icloud.and.arrow.up")
-                        .padding(40)
-                        .font(.system(size: 60, weight: .thin))
-                        .foregroundColor(.gray)
-                        .overlay(
-                            Circle()
-                                .stroke(Color.gray, lineWidth: 2))
-                        Text("UPLOAD")
-                            .foregroundColor(Color.purple)
-                    }
-                }
-               
-                Button(action: {}) {
-                    VStack {
-                       Image(systemName: "archivebox")
-                       .padding(40)
-                       .font(.system(size: 60, weight: .thin))
-                       .foregroundColor(.gray)
-                       .overlay(
-                           Circle()
-                               .stroke(Color.gray, lineWidth: 2))
-                       Text("LIBRARY")
-                            .foregroundColor(Color.purple)
-                    }
-              }
-                  
-          }
-        }
-    //}
+struct WelcomeButtons: Identifiable {
+    var id = UUID()
+    var imageName: String
+    var text: String
 }
+
+struct Navigation: View {
+    let buttons = [WelcomeButtons(imageName: "camera.viewfinder",
+                                  text: "SCAN"),
+                   WelcomeButtons(imageName: "icloud.and.arrow.up",
+                                  text: "UPLOAD"),
+                   WelcomeButtons(imageName: "archivebox",
+                                  text: "LIBRARY")]
     
+    var body: some View {
+        VStack(spacing: 30){
+            Text("WELCOME")
+                       .font(.system(size: 50))
+                       .fontWeight(.ultraLight)
+                       .offset(y:-30)
+            
+            ForEach(buttons, id: \.id) { button in
+                Button(action: {}) {
+                    VStack {
+                        Image(systemName: button.imageName)
+                            .padding(40)
+                            .font(.system(size: 60, weight: .thin))
+                            .foregroundColor(.gray)
+                            .overlay(Circle().stroke(Color.gray, lineWidth: 2))
+                        Text("\(button.text)")
+                            .foregroundColor(Color.purple)
+                    }
+                }
+            }
+        }
+    }
+}
 
 struct Navigation_Previews: PreviewProvider {
     static var previews: some View {
