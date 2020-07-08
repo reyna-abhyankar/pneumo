@@ -23,22 +23,26 @@ struct Navigation: View {
                                   text: "LIBRARY")]
     
     var body: some View {
-        VStack(spacing: 30){
-            Text("WELCOME")
-                       .font(.system(size: 50))
-                       .fontWeight(.ultraLight)
-                       .offset(y:-30)
-            
-            ForEach(buttons, id: \.id) { button in
-                Button(action: {}) {
-                    VStack {
-                        Image(systemName: button.imageName)
-                            .padding(40)
-                            .font(.system(size: 60, weight: .thin))
-                            .foregroundColor(.gray)
-                            .overlay(Circle().stroke(Color.gray, lineWidth: 2))
-                        Text("\(button.text)")
-                            .foregroundColor(Color.purple)
+        NavigationView {
+            VStack(spacing: 30) {
+                Text("WELCOME")
+                   .font(.system(size: 50))
+                   .fontWeight(.ultraLight)
+                   .offset(y:-30)
+
+                ForEach(buttons, id: \.id) { button in
+                    NavigationLink(destination: DetailView()
+                        .navigationBarHidden(true)
+                        .navigationBarTitle("")) {
+                        VStack {
+                            Image(systemName: button.imageName)
+                                .padding(40)
+                                .font(.system(size: 65, weight: .thin))
+                                .foregroundColor(.gray)
+                                .overlay(Circle().stroke(Color.gray, lineWidth: 2))
+                            Text("\(button.text)")
+                                .foregroundColor(Color.purple)
+                        }
                     }
                 }
             }

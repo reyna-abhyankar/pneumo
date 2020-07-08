@@ -10,21 +10,26 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        ZStack {
-            
-            Color.init(red: 119/255, green: 88/255, blue: 245/255, opacity: 100)
-                .edgesIgnoringSafeArea(.all)
-           
-            VStack {
-                LungLogo()
-                                
-                Text("PNEUMO")
-                    .font(.largeTitle)
-                    .fontWeight(.ultraLight)
-                    .foregroundColor(Color.white)
+        NavigationView {
+            ZStack {
+                Color.init(red: 119/255, green: 88/255, blue: 245/255, opacity: 100)
+                    .edgesIgnoringSafeArea(.all)
+                VStack {
+                    LungLogo()
+                    Text("PNEUMO")
+                        .font(.largeTitle)
+                        .fontWeight(.ultraLight)
+                        .foregroundColor(Color.white)
+                    NavigationLink(destination: Navigation()
+                        .navigationBarHidden(true)
+                        .navigationBarTitle("")) {
+                        Text("Tap to start")
+                            .foregroundColor(Color.white)
+                    }
+                }
             }
-                
-                
+            .navigationBarHidden(true)
+            .navigationBarTitle("")
         }
     }
 }
@@ -32,19 +37,12 @@ struct LungLogo: View {
     var body: some View {
         ZStack {
             Circle()
-            .fill(Color.white).frame(width: 175, height: 175)
-            .opacity(0.97)
-            
+                .fill(Color.white).frame(width: 175, height: 175)
+                .opacity(0.97)
             Image("lungs")
-            .resizable()
+                .resizable()
                 .frame(width: 125.0, height: 140.0)
-                
-        
-        
-        
         }
-        
-    
     }
 }
 struct ContentView_Previews: PreviewProvider {
