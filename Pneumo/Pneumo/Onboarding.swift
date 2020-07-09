@@ -21,11 +21,17 @@ struct Onboarding: View {
     @State private var step = 1
     
     let onboardingButtons = [WelcomeButtons(imageName: "P1",
-                                            text: "With our powerful mobile app, pneumonia radiology analysis is made simple."),
+                                            text: "With our powerful mobile app, pneumonia radiology analysis is made simple.",
+                                            imgWidth: 350,
+                                            imgHeight: 300),
                              WelcomeButtons(imageName: "P2",
-                                            text: "Scan or upload chest x-rays, and our algorithms will provide different diagnoses."),
+                                            text: "Scan or upload chest x-rays, and our algorithms will provide different diagnoses.",
+                                            imgWidth: 280,
+                                            imgHeight: 270),
                              WelcomeButtons(imageName: "P3",
-                                            text: "Before proceeding, please remember that PNEUMO is not 100% accurate.")]
+                                            text: "Before proceeding, please remember that PNEUMO is not 100% accurate.",
+                                            imgWidth: 280,
+                                            imgHeight: 270)]
     
     let CONSTANT_OFFSET: CGFloat = 8
     
@@ -51,7 +57,7 @@ struct Onboarding: View {
                         HStack {
                             ForEach(self.onboardingButtons, id: \.id) { onB in
                                 VStack(spacing: 10) {
-                                    Image(onB.imageName).resizable().frame(width: 280, height: 270)
+                                    Image(onB.imageName).resizable().frame(width: onB.imgWidth, height: onB.imgHeight)
                                     Text("\(onB.text)")
                                         .fontWeight(.thin)
                                         .padding()
