@@ -8,6 +8,14 @@
 
 import SwiftUI
 
+struct WelcomeButtons: Identifiable {
+    var id = UUID()
+    var imageName: String
+    var text: String
+    var imgWidth: CGFloat?
+    var imgHeight: CGFloat?
+}
+
 struct Onboarding: View {
     
     @State private var step = 1

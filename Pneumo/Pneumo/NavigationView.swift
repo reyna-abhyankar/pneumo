@@ -8,12 +8,6 @@
 
 import SwiftUI
 
-struct WelcomeButtons: Identifiable {
-    var id = UUID()
-    var imageName: String
-    var text: String
-}
-
 struct Navigation: View {
     let buttons = [WelcomeButtons(imageName: "camera.viewfinder",
                                   text: "SCAN"),
