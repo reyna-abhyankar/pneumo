@@ -19,10 +19,11 @@ struct Navigation: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 30) {
-                Text("WELCOME")
-                   .font(.system(size: 50))
-                   .fontWeight(.ultraLight)
-                   .offset(y:-30)
+                Text("HOME")
+                    .font(.system(size: 50))
+                    .fontWeight(.ultraLight)
+                    .foregroundColor(Color("DarkShade"))
+                    .offset(y:-30)
 
                 ForEach(buttons, id: \.id) { button in
                     NavigationLink(destination: DetailView(text: button.text)) {
@@ -30,8 +31,8 @@ struct Navigation: View {
                             Image(systemName: button.imageName)
                                 .padding(40)
                                 .font(.system(size: 65, weight: .thin))
-                                .foregroundColor(.gray)
-                                .overlay(Circle().stroke(Color.gray, lineWidth: 2))
+                                .foregroundColor(Color("DarkShade"))
+                                .overlay(Circle().stroke(Color("DarkShade"), lineWidth: 2))
                             Text("\(button.text)")
                             .foregroundColor(Color("DarkShade"))
                                 //.foregroundColor(Color.purple)
