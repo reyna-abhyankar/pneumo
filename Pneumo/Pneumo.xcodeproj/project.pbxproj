@@ -108,13 +108,13 @@
 				82CB560124B269D600A8798C /* AppDelegate.swift */,
 				82CB560324B269D600A8798C /* SceneDelegate.swift */,
 				82CB560524B269D600A8798C /* ContentView.swift */,
+				20753D0124B5BC14001EE807 /* Onboarding.swift */,
+				20DCAF7124B2FEC900BA342C /* NavigationView.swift */,
+				8298FC9624B5AE4E0090CD31 /* DetailView.swift */,
 				82CB560724B269D900A8798C /* Assets.xcassets */,
 				82CB560C24B269D900A8798C /* LaunchScreen.storyboard */,
 				82CB560F24B269D900A8798C /* Info.plist */,
 				82CB560924B269D900A8798C /* Preview Content */,
-				20DCAF7124B2FEC900BA342C /* NavigationView.swift */,
-				8298FC9624B5AE4E0090CD31 /* DetailView.swift */,
-				20753D0124B5BC14001EE807 /* Onboarding.swift */,
 			);
 			path = Pneumo;
 			sourceTree = "<group>";

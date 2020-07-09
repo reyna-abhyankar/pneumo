@@ -20,7 +20,7 @@ struct ContentView: View {
                         .font(.largeTitle)
                         .fontWeight(.ultraLight)
                         .foregroundColor(Color.white)
-                    NavigationLink(destination: Navigation()
+                    NavigationLink(destination: Onboarding()
                         .navigationBarHidden(true)
                         .navigationBarTitle("")) {
                         Text("Tap to start")

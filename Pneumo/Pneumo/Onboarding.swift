@@ -13,6 +13,7 @@ struct Onboarding: View {
     @State private var step = 1
     
     var body: some View {
+        NavigationView {
         ZStack {
             Color("DarkShade")
                 .edgesIgnoringSafeArea(.all)
@@ -103,7 +104,9 @@ struct Onboarding: View {
                 .font(.largeTitle)
                 .accentColor(Color("LightAccent"))
                 
-                Button(action: {}) {
+                NavigationLink(destination: Navigation()
+                    .navigationBarHidden(true)
+                    .navigationBarTitle("")) {
                     HStack {
                         Text("Continue")
                         Image(systemName: "chevron.right")
@@ -118,6 +121,7 @@ struct Onboarding: View {
                 }
             }
             
+        }
         }
     }
 }
