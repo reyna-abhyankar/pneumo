@@ -12,7 +12,8 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color.init(red: 119/255, green: 88/255, blue: 245/255, opacity: 100)
+                Color("DarkShade")
+                //Color.init(red: 119/255, green: 88/255, blue: 245/255, opacity: 100)
                     .edgesIgnoringSafeArea(.all)
                 VStack {
                     LungLogo()
@@ -37,8 +38,8 @@ struct LungLogo: View {
     var body: some View {
         ZStack {
             Circle()
-                .fill(Color.white).frame(width: 175, height: 175)
-                .opacity(0.97)
+                .fill(Color("LightAccent")).frame(width: 175, height: 175)
+                .opacity(0.95)
             Image("lungs")
                 .resizable()
                 .frame(width: 125.0, height: 140.0)
