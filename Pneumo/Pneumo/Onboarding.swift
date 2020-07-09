@@ -12,17 +12,26 @@ struct Onboarding: View {
     
     @State private var step = 1
     
+    let onboardingButtons = [WelcomeButtons(imageName: "P1",
+                                            text: "With our powerful mobile app, pneumonia radiology analysis is extremely simple."),
+                             WelcomeButtons(imageName: "P1",
+                                            text: "Scan or upload chest x-rays, and our algorithms will provide different diagnoses."),
+                             WelcomeButtons(imageName: "P1",
+                                            text: "Before proceeding, please remember that PNEUMO is not 100% accurate.")]
+    
+    let CONSTANT_OFFSET: CGFloat = 8
+    
     var body: some View {
         NavigationView {
         ZStack {
             Color("DarkShade")
                 .edgesIgnoringSafeArea(.all)
             
-            //Rectangle()
-                //.fill(Color("Accent2"))
-                //.scaleEffect(1.4)
-                //.rotationEffect(.degrees(-15))
-                //.offset(x: -100, y: 300)
+            /*Rectangle()
+                .fill(Color("Accent2"))
+                .scaleEffect(1.4)
+                .rotationEffect(.degrees(-15))
+                .offset(x: -100, y: 300)*/
             
             VStack(spacing: 15) {
                 Text("Welcome to")
@@ -38,67 +47,35 @@ struct Onboarding: View {
                 
                 GeometryReader { gr in
                     HStack {
-                        VStack(spacing: 40) {
-                            Image("P1").resizable().frame(width: 400, height: 250)
-                            Text("Make pneumonia radiology analysis simple with our mobile app.")
-                                .font(.title)
-                                .fontWeight(.thin)
-                                .multilineTextAlignment(.center)
-                                .padding()
-                                .animation(Animation.interpolatingSpring(stiffness: 40, damping: 7).delay(0.1))
-                        }.frame(width: gr.frame(in: .global).width)
-                        
-                        VStack(spacing: 40) {
-                            Image("P1").resizable().frame(width: 400, height: 250)
-                            Text("Scan or upload chest x-rays, and our algorithms will provide differential pneumonia diagnoses.")
-                                .fontWeight(.thin)
-                                .padding()
-                                .fixedSize(horizontal: false, vertical: true)
-                                .animation(Animation.interpolatingSpring(stiffness: 40, damping: 7).delay(0.1))
-                        }.frame(width: gr.frame(in: .global).width)
-                        
-                        VStack(spacing: 40) {
-                            Image("P1").resizable().frame(width: 400, height: 250)
-                            Text("Before proceeding, please remember that PNEUMO is not 100% accurate. Always consult with a physician.")
-                                .fontWeight(.thin)
-                                .padding()
-                                .fixedSize(horizontal: false, vertical: true)
-                                .animation(Animation.interpolatingSpring(stiffness: 40, damping: 7).delay(0.1))
-                        }.frame(width: gr.frame(in: .global).width)
-                        
+                        ForEach(self.onboardingButtons, id: \.id) { onB in
+                            VStack(spacing: 40) {
+                                Image(onB.imageName).resizable().frame(width: 400, height: 250)
+                                Text("\(onB.text)")
+                                    .fontWeight(.thin)
+                                    .padding()
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .animation(Animation.interpolatingSpring(stiffness: 40, damping: 7).delay(0.1))
+                            }.frame(width: gr.frame(in: .global).width)
+                        }
                     }
                     .multilineTextAlignment(.center)
                     .foregroundColor(Color("LightShade"))
                     .font(.title)
                     .padding(.vertical, 60).frame(width: gr.frame(in: .global).width * 3)
-                    .frame(maxHeight: .infinity).offset(x: self.step == 1 ? gr.frame(in: .global).width : self.step == 2 ? 0 : -gr.frame(in: .global).width)
+                    .frame(maxHeight: .infinity).offset(x: self.step == 1 ? gr.frame(in: .global).width+self.CONSTANT_OFFSET : self.step == 2 ? 0 : -gr.frame(in: .global).width-self.CONSTANT_OFFSET)
                     .animation(Animation.interpolatingSpring(stiffness: 40, damping: 8))
                 }
                 HStack(spacing: 20) {
-                    Button(action: {self.step = 1}) {
-                        Image(systemName: "1.circle")
-                            .padding()
-                            .scaleEffect(step == 1 ? 1 : 0.65)
-                            //.background(Circle()
-                                //.fill(Color("Accent"))
-                                //.shadow(radius: 10))
-                    }
-                    Button(action: {self.step = 2}) {
-                        Image(systemName: "2.circle")
-                            .padding()
-                            .scaleEffect(step == 2 ? 1 : 0.65)
-                            //.background(Circle()
-                                //.fill(Color("Accent"))
-                                //.shadow(radius: 10))
-                    }
-                    Button(action: {self.step = 3}) {
-                        Image(systemName: "3.circle")
-                            .padding()
-                            .scaleEffect(step == 3 ? 1 : 0.65)
-                            //.background(Circle()
-                                //.fill(Color("Accent"))
-                                //.shadow(radius: 10))
+                    ForEach (1 ..< 4) { num in
+                        Button(action: {self.step = num}) {
+                            Image(systemName: "\(num).circle")
+                                .padding()
+                                .scaleEffect(self.step == num ? 1 : 0.65)
+                                /*.background(Circle()
+                                    .fill(Color("Accent"))
+                                    .shadow(radius: 10))*/
                         }
+                    }
                 }
                 .animation(.spring(response: 0.4, dampingFraction: 0.5))
                 .font(.largeTitle)
