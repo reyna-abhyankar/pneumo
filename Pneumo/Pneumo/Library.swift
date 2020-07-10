@@ -10,14 +10,12 @@ import SwiftUI
 
 struct Library: View {
     var body: some View {
-        NavigationView {
-            List(contacts) { contact in
-                NavigationLink(destination:ContactDetail(contact: contact)) {
-                    PatientRow(contact: contact)
-                }
+        List(contacts) { contact in
+            NavigationLink(destination:ContactDetail(contact: contact)) {
+                PatientRow(contact: contact)
             }
-            .navigationBarTitle("Patients", displayMode: .inline)
         }
+        .navigationBarTitle("Patients")
     }
 }
 

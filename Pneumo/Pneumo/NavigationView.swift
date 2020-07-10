@@ -26,7 +26,15 @@ struct Navigation: View {
                     .offset(y:-30)
 
                 ForEach(buttons, id: \.id) { button in
-                    NavigationLink(destination: DetailView(text: button.text)) {
+                    NavigationLink(destination: {
+                            VStack {
+                                if button.text=="LIBRARY" {
+                                    Library()
+                                } else {
+                                    DetailView(text: button.text)
+                                }
+                            }
+                        }()) {
                         VStack {
                             Image(systemName: button.imageName)
                                 .padding(40)
