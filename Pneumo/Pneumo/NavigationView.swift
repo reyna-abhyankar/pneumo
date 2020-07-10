@@ -21,8 +21,8 @@ struct Navigation: View {
             VStack(spacing: 30) {
                 Text("HOME")
                     .font(.system(size: 50))
-                    .fontWeight(.ultraLight)
-                    .foregroundColor(Color("DarkShade"))
+                    .fontWeight(.thin)
+                    .foregroundColor(Color.gray)
                     .offset(y:-30)
 
                 ForEach(buttons, id: \.id) { button in
@@ -34,7 +34,7 @@ struct Navigation: View {
                                 .foregroundColor(Color("DarkShade"))
                                 .overlay(Circle().stroke(Color("DarkShade"), lineWidth: 2))
                             Text("\(button.text)")
-                            .foregroundColor(Color("Accent2"))
+                                .foregroundColor(Color.gray)
                                 //.foregroundColor(Color.purple)
                         }
                     }

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		20753D0224B5BC14001EE807 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20753D0124B5BC14001EE807 /* Onboarding.swift */; };
+		20753D0424B827AF001EE807 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20753D0324B827AF001EE807 /* Library.swift */; };
+		20753D0624B8310B001EE807 /* PatientInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20753D0524B8310B001EE807 /* PatientInfo.swift */; };
+		20753D0824B8371F001EE807 /* ContactDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20753D0724B8371F001EE807 /* ContactDetail.swift */; };
 		20DCAF7224B2FEC900BA342C /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DCAF7124B2FEC900BA342C /* NavigationView.swift */; };
 		8298FC9724B5AE4F0090CD31 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8298FC9624B5AE4E0090CD31 /* DetailView.swift */; };
 		82CB560224B269D600A8798C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CB560124B269D600A8798C /* AppDelegate.swift */; };
@@ -39,6 +42,9 @@
 
 /* Begin PBXFileReference section */
 		20753D0124B5BC14001EE807 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		20753D0324B827AF001EE807 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
+		20753D0524B8310B001EE807 /* PatientInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientInfo.swift; sourceTree = "<group>"; };
+		20753D0724B8371F001EE807 /* ContactDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetail.swift; sourceTree = "<group>"; };
 		20DCAF7124B2FEC900BA342C /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
 		8298FC9624B5AE4E0090CD31 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		82CB55FE24B269D600A8798C /* Pneumo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pneumo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +117,9 @@
 				20753D0124B5BC14001EE807 /* Onboarding.swift */,
 				20DCAF7124B2FEC900BA342C /* NavigationView.swift */,
 				8298FC9624B5AE4E0090CD31 /* DetailView.swift */,
+				20753D0724B8371F001EE807 /* ContactDetail.swift */,
+				20753D0524B8310B001EE807 /* PatientInfo.swift */,
+				20753D0324B827AF001EE807 /* Library.swift */,
 				82CB560724B269D900A8798C /* Assets.xcassets */,
 				82CB560C24B269D900A8798C /* LaunchScreen.storyboard */,
 				82CB560F24B269D900A8798C /* Info.plist */,
@@ -277,9 +286,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				20753D0224B5BC14001EE807 /* Onboarding.swift in Sources */,
+				20753D0424B827AF001EE807 /* Library.swift in Sources */,
 				82CB560224B269D600A8798C /* AppDelegate.swift in Sources */,
 				82CB560424B269D600A8798C /* SceneDelegate.swift in Sources */,
+				20753D0824B8371F001EE807 /* ContactDetail.swift in Sources */,
 				20DCAF7224B2FEC900BA342C /* NavigationView.swift in Sources */,
+				20753D0624B8310B001EE807 /* PatientInfo.swift in Sources */,
 				8298FC9724B5AE4F0090CD31 /* DetailView.swift in Sources */,
 				82CB560624B269D600A8798C /* ContentView.swift in Sources */,
 			);
