@@ -33,7 +33,7 @@ struct Navigation: View {
                                 .foregroundColor(.gray)
                                 .overlay(Circle().stroke(Color.gray, lineWidth: 2))
                             Text("\(button.text)")
-                            .foregroundColor(Color("DarkShade"))
+                            .foregroundColor(Color("Accent2"))
                                 //.foregroundColor(Color.purple)
                         }
                     }
