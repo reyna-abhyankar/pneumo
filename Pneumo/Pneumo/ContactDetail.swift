@@ -10,7 +10,14 @@ import SwiftUI
 
 struct ContactDetail: View {
     
-    let contact: Contact
+    var iterableInfo: [String]
+    var contact: Contact
+    let leftText = ["Diagnosis", "Diagnosis Date", "Age", "Sex"]
+    
+    init(contact: Contact) {
+        iterableInfo = [contact.diagnosis, contact.date, contact.age, contact.sex]
+        self.contact = contact
+    }
     
     var body: some View {
         VStack {
@@ -27,47 +34,23 @@ struct ContactDetail: View {
                 .padding(5)
             
             Form {
-                
-                Section{
-                    HStack {
-                        Text("Diagnosis")
-                        Spacer()
-                        Text(contact.diagnosis)
-                            .foregroundColor(.gray)
-                            .font(.callout)
-                    }
-                    HStack {
-                    Text("Diagnosis Date")
-                    Spacer()
-                    Text(contact.date)
-                        .foregroundColor(.gray)
-                        .font(.callout)
-                    }
-                    HStack {
-                        Text("Age")
-                        Spacer()
-                        Text(contact.age)
-                            .foregroundColor(.gray)
-                            .font(.callout)
-                    }
-                    HStack {
-                        Text("Sex")
-                        Spacer()
-                        Text(contact.sex)
-                            .foregroundColor(.gray)
-                            .font(.callout)
-                    }
-                        
+                Section {
+                    ForEach (0 ..< iterableInfo.count) { num in
+                        HStack {
+                            Text(self.leftText[num])
+                            Spacer()
+                            Text(self.iterableInfo[num])
+                                .foregroundColor(.gray)
+                                .font(.callout)
+                        }
                     }
                 }
-                
-                
-                
-            }.offset(y: 30)
-            
-            
+            }
         }
+        .offset(y: 30)
+        .navigationBarTitle("Patient Detail")
     }
+}
 
 
 struct ContactDetail_Previews: PreviewProvider {
