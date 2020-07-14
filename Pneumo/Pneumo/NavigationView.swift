@@ -31,7 +31,7 @@ struct Navigation: View {
                                 if button.text=="LIBRARY" {
                                     Library()
                                 } else {
-                                    DetailView(text: button.text)
+                                    DetailView()
                                 }
                             }
                         }()) {
