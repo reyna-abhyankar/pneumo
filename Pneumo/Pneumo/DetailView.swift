@@ -8,41 +8,15 @@
 
 import SwiftUI
 
-struct CaptureImageView {
-  
-    /// MARK: - Properties
-    @Binding var isShown: Bool
-    @Binding var image: Image?
-  
-    func makeCoordinator() -> Coordinator {
-        return Coordinator(isShown: $isShown, image: $image)
-    }
-}
-
-extension CaptureImageView: UIViewControllerRepresentable {
-    func makeUIViewController(context: UIViewControllerRepresentableContext<CaptureImageView>) -> UIImagePickerController {
-        let picker = UIImagePickerController()
-        picker.delegate = context.coordinator
-        /// Default is images gallery. Un-comment the next line of code if you would like to test camera
-        //  picker.sourceType = .camera
-        return picker
-    }
-  
-    func updateUIViewController(_ uiViewController: UIImagePickerController,
-                              context: UIViewControllerRepresentableContext<CaptureImageView>) {
-    
-    }
-}
-
 struct DetailView: View {
     @State var image: Image? = nil
-    @State var showCaptureImageView: Bool = false
+    //@State var showCaptureImageView: Bool = false
   
     var body: some View {
         ZStack {
             VStack {
                 Button(action: {
-                    self.showCaptureImageView.toggle()
+                    //self.showCaptureImageView = true
                 }) {
                     Text("Choose photos")
                 }
@@ -52,9 +26,10 @@ struct DetailView: View {
                   .overlay(Circle().stroke(Color.white, lineWidth: 4))
                   .shadow(radius: 10)
             }
-            if (showCaptureImageView) {
-                CaptureImageView(isShown: $showCaptureImageView,                    image: $image)
-            }
+            /*if (showCaptureImageView) {
+                CaptureImageView(isShown: $showCaptureImageView,
+                                 image: $image)
+            }*/
         }
     }
 }

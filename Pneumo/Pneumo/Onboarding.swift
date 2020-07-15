@@ -87,8 +87,9 @@ struct Onboarding: View {
                     .accentColor(Color("LightAccent"))
                     
                     NavigationLink(destination: Navigation()
-                        .navigationBarHidden(true)
-                        .navigationBarTitle("")) {
+                        //.navigationBarHidden(true)
+                        //.navigationBarTitle("")
+                    ) {
                         HStack {
                             Text("Continue")
                             Image(systemName: "chevron.right")

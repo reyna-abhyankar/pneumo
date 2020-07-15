@@ -1,31 +1,64 @@
 //
-//  Coordinator.swift
-//  CameraAndGalleryTutorial
+//  ImagePicker.swift
+//  imagePicker
 //
-//  Created by Duy Bui on 10/26/19.
-//  Copyright © 2019 Duy Bui. All rights reserved.
+//  Created by Christopher Guirguis on 3/14/20.
+//  Copyright © 2020 Christopher Guirguis. All rights reserved.
 //
 
+import Foundation
 import SwiftUI
 
-class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+
+struct imagePicker:UIViewControllerRepresentable {
+    @Binding var image: UIImage?
+    @Binding var showImagePicker: Bool
     
-    @Binding var isCoordinatorShown: Bool
-    @Binding var imageInCoordinator: Image?
+    typealias UIViewControllerType = UIImagePickerController
+    typealias Coordinator = imagePickerCoordinator
     
-    init(isShown: Binding<Bool>, image: Binding<Image?>) {
-        _isCoordinatorShown = isShown
-        _imageInCoordinator = image
+    var sourceType:UIImagePickerController.SourceType = .camera
+    
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<imagePicker>) -> UIImagePickerController {
+        let picker = UIImagePickerController()
+        picker.sourceType = sourceType
+        picker.delegate = context.coordinator
+        return picker
     }
     
-    func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let unwrapImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
-        imageInCoordinator = Image(uiImage: unwrapImage)
-        isCoordinatorShown = false
+    func makeCoordinator() -> imagePicker.Coordinator {
+        return imagePickerCoordinator(image: $image, showImagePicker: $showImagePicker)
+    }
+    
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<imagePicker>) {}
+    
+    
+}
+
+
+
+class imagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+        @Binding var image: UIImage?
+        @Binding var showImagePicker: Bool
+    
+    init(image:Binding<UIImage?>, showImagePicker: Binding<Bool>) {
+            _image = image
+            _showImagePicker = showImagePicker
+    }
+    
+    
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let uiimage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            image = uiimage
+            showImagePicker = false
+        }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        isCoordinatorShown = false
+        showImagePicker = false
     }
+
+
 }
