@@ -63,7 +63,7 @@ struct ContactDetail: View {
                 
                 
                 
-            }.offset(y: 30)
+            }.offset(y: -15)
             
             
         }

@@ -16,8 +16,12 @@ struct Library: View {
                     PatientRow(contact: contact)
                 }
             }
-            .navigationBarTitle("Patients", displayMode: .inline)
-        }
+            .navigationBarTitle("Patients")
+            .navigationBarItems(leading: Button("Edit") { print("Edit Patient")},
+                trailing:
+                Button("New") {
+                    print("New Patient!")}
+        )
     }
 }
 
@@ -49,4 +53,4 @@ struct PatientRow: View {
         }.padding(10)
     }
 }
-
+}
