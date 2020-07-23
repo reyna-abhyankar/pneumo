@@ -57,7 +57,7 @@ struct ContactDetail: View {
 
 struct ContactDetail_Previews: PreviewProvider {
     static var previews: some View {
-        ContactDetail(contact: contacts[0])
+        ContactDetail(contact: Contact(imageName: "P4", name: "Patient 1", diagnosis: "Pnuemonia", date: "01/26/18", age: "23", sex: "Female"))
     }
 }
 

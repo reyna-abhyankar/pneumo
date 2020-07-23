@@ -9,16 +9,28 @@
 import SwiftUI
 
 struct Library: View {
+    @State private var contacts = [
+        Contact(imageName: "P4", name: "Patient 1", diagnosis: "Pnuemonia", date: "01/26/18", age: "23", sex: "Female"),
+        Contact(imageName: "P4", name: "Patient 2", diagnosis: "Not Pnuemonia", date: "01/26/18", age: "32", sex: "Female"),
+        Contact(imageName: "P4", name: "Patient 3", diagnosis: "Covid Pnuemonia", date: "01/26/18", age: "18", sex: "Female")
+    ]
+    @State private var isEditable = false
+    
     var body: some View {
         List {
             ForEach(contacts, id: \.id) { contact in
-                NavigationLink(destination:ContactDetail(contact: contact)) {
+                NavigationLink(destination: ContactDetail(contact: contact)) {
                     PatientRow(contact: contact)
                 }
             }
-            .onDelete(perform: delete)
             .onMove(perform: move)
+            .onLongPressGesture {
+                withAnimation {
+                    self.isEditable = true
+                }
+            }
         }
+        .environment(\.editMode, isEditable ? .constant(.active) : .constant(.inactive))
         .navigationBarTitle("Patients", displayMode: .inline)
         .navigationBarItems(trailing: Button(action: {
             print("New row")
@@ -27,12 +39,11 @@ struct Library: View {
         })
     }
     
-    func delete(offsets: IndexSet) {
-        contacts.remove(atOffsets: offsets)
-    }
-    
     func move(source: IndexSet, destination: Int) {
         contacts.move(fromOffsets: source, toOffset: destination)
+        withAnimation {
+            self.isEditable = false
+        }
     }
 }
 
@@ -43,10 +54,7 @@ struct Library_Previews: PreviewProvider {
 }
 
 struct PatientRow: View {
-    
     let contact: Contact
-    
-    
     var body: some View {
         HStack {
             Image(contact.imageName)
