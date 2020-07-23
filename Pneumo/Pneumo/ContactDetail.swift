@@ -50,6 +50,7 @@ struct ContactDetail: View {
         }
         .offset(y: 30)
         .navigationBarTitle("Patient Detail")
+        .navigationBarItems(trailing: EditButton())
     }
 }
 

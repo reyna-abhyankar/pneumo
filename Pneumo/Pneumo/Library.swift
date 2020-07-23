@@ -10,17 +10,29 @@ import SwiftUI
 
 struct Library: View {
     var body: some View {
-        List(contacts) { contact in
-            NavigationLink(destination:ContactDetail(contact: contact)) {
-                PatientRow(contact: contact)
+        List {
+            ForEach(contacts, id: \.id) { contact in
+                NavigationLink(destination:ContactDetail(contact: contact)) {
+                    PatientRow(contact: contact)
+                }
             }
-
-            .navigationBarTitle("Patients")
-            .navigationBarItems(leading: Button("Edit") { print("Edit Patient")},
-                trailing:
-                Button("New") {
-                    print("New Patient!")}
-        )
+            .onDelete(perform: delete)
+            .onMove(perform: move)
+        }
+        .navigationBarTitle("Patients", displayMode: .inline)
+        .navigationBarItems(trailing: Button(action: {
+            print("New row")
+        }) {
+            Image(systemName: "plus")
+        })
+    }
+    
+    func delete(offsets: IndexSet) {
+        contacts.remove(atOffsets: offsets)
+    }
+    
+    func move(source: IndexSet, destination: Int) {
+        contacts.move(fromOffsets: source, toOffset: destination)
     }
 }
 
@@ -51,5 +63,4 @@ struct PatientRow: View {
             }.offset(x: 20)
         }.padding(10)
     }
-}
 }
