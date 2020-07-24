@@ -9,12 +9,13 @@
 import SwiftUI
 
 struct Library: View {
+    @State private var isEditable = false
+    @State private var addMode = false
     @State private var contacts = [
         Contact(imageName: "P4", name: "Patient 1", diagnosis: "Pnuemonia", date: "01/26/18", age: "23", sex: "Female"),
         Contact(imageName: "P4", name: "Patient 2", diagnosis: "Not Pnuemonia", date: "01/26/18", age: "32", sex: "Female"),
         Contact(imageName: "P4", name: "Patient 3", diagnosis: "Covid Pnuemonia", date: "01/26/18", age: "18", sex: "Female")
     ]
-    @State private var isEditable = false
     
     var body: some View {
         List {
@@ -33,10 +34,13 @@ struct Library: View {
         .environment(\.editMode, isEditable ? .constant(.active) : .constant(.inactive))
         .navigationBarTitle("Patients", displayMode: .inline)
         .navigationBarItems(trailing: Button(action: {
-            print("New row")
+            self.addMode = true
+            //NavigationLink(destination: ContactDetail(contact: nil),
+                 //          isActive: self.$addMode) { EmptyView() }
         }) {
             Image(systemName: "plus")
         })
+        
     }
     
     func move(source: IndexSet, destination: Int) {
