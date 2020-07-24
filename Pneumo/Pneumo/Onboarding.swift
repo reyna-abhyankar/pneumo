@@ -36,7 +36,6 @@ struct Onboarding: View {
     let CONSTANT_OFFSET: CGFloat = 8
     
     var body: some View {
-        NavigationView {
             ZStack {
                 Color("DarkShade")
                     .edgesIgnoringSafeArea(.all)
@@ -100,10 +99,9 @@ struct Onboarding: View {
                         .accentColor(Color("LightAccent"))
                         .opacity(step == 3 ? 1 : 0)
                         .animation(.none).scaleEffect(step == 3 ? 1 : 0.01).animation(Animation.interpolatingSpring(stiffness: 50, damping: 10, initialVelocity: 10))
-                    }.offset(y: -20)
-                }.offset(y: -40)
+                    }
+                }
             }
-        }
     }
 }
 

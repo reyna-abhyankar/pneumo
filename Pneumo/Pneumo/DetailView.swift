@@ -9,15 +9,25 @@
 import SwiftUI
 
 struct DetailView: View {
+    @Binding var showSheetView: Bool
     let text: String
     
     var body: some View {
-        Text("\(text)")
+        NavigationView {
+            Text("\(text)")
+            .navigationBarTitle("Add Patient", displayMode: .inline)
+            .navigationBarItems(trailing: Button(action: {
+                self.showSheetView = false
+            }) {
+                Text("Done").bold()
+            })
+        }
     }
 }
-
+/*
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
         DetailView(text: "Preview")
     }
 }
+*/

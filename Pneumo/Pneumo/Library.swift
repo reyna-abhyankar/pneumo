@@ -35,12 +35,11 @@ struct Library: View {
         .navigationBarTitle("Patients", displayMode: .inline)
         .navigationBarItems(trailing: Button(action: {
             self.addMode = true
-            //NavigationLink(destination: ContactDetail(contact: nil),
-                 //          isActive: self.$addMode) { EmptyView() }
         }) {
             Image(systemName: "plus")
-        })
-        
+        }).sheet(isPresented: $addMode) {
+            DetailView(showSheetView: self.$addMode, text: "Add")
+        }
     }
     
     func move(source: IndexSet, destination: Int) {

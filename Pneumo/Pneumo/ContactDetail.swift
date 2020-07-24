@@ -11,24 +11,24 @@ import SwiftUI
 struct ContactDetail: View {
     
     var iterableInfo: [String]
-    var contact: Contact?
+    var contact: Contact
     let leftText = ["Diagnosis", "Diagnosis Date", "Age", "Sex"]
     
-    init(contact: Contact?) {
-        iterableInfo = [contact!.diagnosis, contact!.date, contact!.age, contact!.sex]
+    init(contact: Contact) {
+        iterableInfo = [contact.diagnosis, contact.date, contact.age, contact.sex]
         self.contact = contact
     }
     
     var body: some View {
         VStack {
-            Image(contact!.imageName)
+            Image(contact.imageName)
                 .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 300, height: 300)
                 .clipped()
                 .cornerRadius(30)
                 .shadow(radius: 3)
-            Text(contact!.name)
+            Text(contact.name)
                 .font(.title)
                 .fontWeight(.light)
                 .padding(5)

@@ -23,7 +23,7 @@ struct Navigation: View {
                     .font(.system(size: 50))
                     .fontWeight(.thin)
                     .foregroundColor(Color.gray)
-                    .offset(y:-30)
+                    //.offset(y:-30)
 
                 ForEach(buttons, id: \.id) { button in
                     NavigationLink(destination: {
@@ -31,7 +31,7 @@ struct Navigation: View {
                                 if button.text=="LIBRARY" {
                                     Library()
                                 } else {
-                                    DetailView(text: button.text)
+                                    AboutPage()
                                 }
                             }
                         }()) {
