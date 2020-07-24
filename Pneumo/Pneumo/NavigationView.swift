@@ -47,7 +47,7 @@ struct Navigation: View {
                         }
                     }
                 }
-            }.offset(y:-40)
+            }.offset(y:-50)
 
         }
     }
