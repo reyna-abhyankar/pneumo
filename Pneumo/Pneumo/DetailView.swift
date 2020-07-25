@@ -9,25 +9,32 @@
 import SwiftUI
 
 struct DetailView: View {
-    @Binding var showSheetView: Bool
+    @Binding var addMode: Bool
+    @Binding var name: String
     let text: String
     
     var body: some View {
         NavigationView {
-            Text("\(text)")
+            VStack {
+                TextField("Enter name here...", text: self.$name)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+            }
             .navigationBarTitle("Add Patient", displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
-                self.showSheetView = false
+                self.addMode = false
             }) {
                 Text("Done").bold()
             })
         }
     }
 }
-/*
+
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(text: "Preview")
+        DetailView(addMode: .constant(true),
+                   name: .constant("Enter name"),
+                   text: "Add")
     }
 }
-*/
+
