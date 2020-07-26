@@ -10,11 +10,26 @@ import Foundation
 import SwiftUI
 
 struct Contact: Identifiable {
-    let imageName: String
-    let name: String
-    let diagnosis: String
-    let date: String
-    let age: String     // change to Int
-    let sex: String
-    let id = UUID()
+    var imageName: String
+    var name: String
+    var diagnosis: String
+    var date: String
+    var age: String     // change to Int
+    var sex: String
+    var id = UUID()
+    
+    init(imageName: String, name: String, diagnosis: String, date: String, age: String, sex: String) {
+        self.imageName = imageName
+        self.name = name
+        self.diagnosis = diagnosis
+        self.date = date
+        self.age = age
+        self.sex = sex
+    }
+    
+    init() {
+        self.init(imageName: "", name: "", diagnosis: "", date: "", age: "", sex: "")
+    }
 }
+
+

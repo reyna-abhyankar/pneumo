@@ -11,8 +11,7 @@ import SwiftUI
 struct Library: View {
     @State private var isEditable = false
     @State private var addMode = false
-    
-    @State private var name: String = ""
+    @State private var contact: Contact = Contact()
     
     @State private var contacts = [
         Contact(imageName: "P4", name: "Patient 1", diagnosis: "Pnuemonia", date: "01/26/18", age: "23", sex: "Female"),
@@ -42,14 +41,14 @@ struct Library: View {
             Image(systemName: "plus")
         }).sheet(isPresented: $addMode) {
             DetailView(addMode: self.$addMode,
-                       name: self.$name,
+                       contact: self.$contact,
                        text: "Add")
                 .onDisappear(perform: self.add)
         }
     }
     
     func add() {
-        contacts.append(Contact(imageName: "P4", name: self.name, diagnosis: "Test", date: "07/24/20", age: "19", sex: "Male"))
+        contacts.append(contact)
     }
     
     func move(source: IndexSet, destination: Int) {

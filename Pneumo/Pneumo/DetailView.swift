@@ -10,13 +10,13 @@ import SwiftUI
 
 struct DetailView: View {
     @Binding var addMode: Bool
-    @Binding var name: String
+    @Binding var contact: Contact
     let text: String
     
     var body: some View {
         NavigationView {
             VStack {
-                TextField("Enter name here...", text: self.$name)
+                TextField("Enter name here...", text: self.$contact.name)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             }
@@ -33,7 +33,7 @@ struct DetailView: View {
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
         DetailView(addMode: .constant(true),
-                   name: .constant("Enter name"),
+                   contact: .constant(Contact()),
                    text: "Add")
     }
 }
