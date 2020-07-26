@@ -14,7 +14,7 @@ struct DetailView: View {
     
     var ageProxy: Binding<String> {
         Binding<String>(
-            get: { String(format: "%d", self.contact.age) },
+            get: { "" },
             set: {
                 if let value = NumberFormatter().number(from: $0) {
                     self.contact.age = value.intValue
@@ -35,7 +35,7 @@ struct DetailView: View {
                 TextField("Enter date here...", text: self.$contact.date)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
-                TextField("Enter age here", text: ageProxy)
+                TextField("Enter age here...", text: ageProxy)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                 TextField("Enter sex here...", text: self.$contact.sex)
