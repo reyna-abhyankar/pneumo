@@ -14,9 +14,9 @@ struct Library: View {
     @State private var contact: Contact = Contact()
     
     @State private var contacts = [
-        Contact(imageName: "P4", name: "Patient 1", diagnosis: "Pnuemonia", date: "01/26/18", age: "23", sex: "Female"),
-        Contact(imageName: "P4", name: "Patient 2", diagnosis: "Not Pnuemonia", date: "01/26/18", age: "32", sex: "Female"),
-        Contact(imageName: "P4", name: "Patient 3", diagnosis: "Covid Pnuemonia", date: "01/26/18", age: "18", sex: "Female")
+        Contact(imageName: "P4", name: "Patient 1", diagnosis: "Pnuemonia", date: "01/26/18", age: 23, sex: "Female"),
+        Contact(imageName: "P4", name: "Patient 2", diagnosis: "Not Pnuemonia", date: "01/26/18", age: 32, sex: "Female"),
+        Contact(imageName: "P4", name: "Patient 3", diagnosis: "Covid Pnuemonia", date: "01/26/18", age: 18, sex: "Female")
     ]
     
     var body: some View {
@@ -40,9 +40,7 @@ struct Library: View {
         }) {
             Image(systemName: "plus")
         }).sheet(isPresented: $addMode) {
-            DetailView(addMode: self.$addMode,
-                       contact: self.$contact,
-                       text: "Add")
+            DetailView(addMode: self.$addMode, contact: self.$contact)
                 .onDisappear(perform: self.add)
         }
     }

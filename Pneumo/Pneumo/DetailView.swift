@@ -11,14 +11,36 @@ import SwiftUI
 struct DetailView: View {
     @Binding var addMode: Bool
     @Binding var contact: Contact
-    let text: String
+    
+    var ageProxy: Binding<String> {
+        Binding<String>(
+            get: { String(format: "%d", self.contact.age) },
+            set: {
+                if let value = NumberFormatter().number(from: $0) {
+                    self.contact.age = value.intValue
+                }
+            }
+        )
+    }
     
     var body: some View {
         NavigationView {
             VStack {
                 TextField("Enter name here...", text: self.$contact.name)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                TextField("Enter diagnosis here...", text: self.$contact.diagnosis)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                TextField("Enter date here...", text: self.$contact.date)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                TextField("Enter age here", text: ageProxy)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                TextField("Enter sex here...", text: self.$contact.sex)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
             }
             .navigationBarTitle("Add Patient", displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
@@ -32,9 +54,7 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(addMode: .constant(true),
-                   contact: .constant(Contact()),
-                   text: "Add")
+        DetailView(addMode: .constant(true), contact: .constant(Contact()))
     }
 }
 
