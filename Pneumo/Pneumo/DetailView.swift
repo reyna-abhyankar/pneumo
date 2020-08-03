@@ -12,6 +12,8 @@ struct DetailView: View {
     @Binding var addMode: Bool
     @Binding var contact: Contact
     
+    @State var showCaptureImageView: Bool = false
+    
     var ageProxy: Binding<String> {
         Binding<String>(
             get: { "" },
@@ -26,6 +28,12 @@ struct DetailView: View {
     var body: some View {
         NavigationView {
             VStack {
+                Button(action: {
+                    self.showCaptureImageView.toggle()
+                }) {
+                    Text("Choose photo")
+                }
+
                 TextField("Enter name here...", text: self.$contact.name)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
@@ -47,7 +55,10 @@ struct DetailView: View {
                 self.addMode = false
             }) {
                 Text("Done").bold()
-            })
+            }).sheet(isPresented: $showCaptureImageView) {
+                CaptureImageView(isShown: self.$showCaptureImageView,
+                                 image: self.$contact.image)
+            }
         }
     }
 }

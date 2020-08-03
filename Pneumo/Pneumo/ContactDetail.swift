@@ -21,7 +21,7 @@ struct ContactDetail: View {
     
     var body: some View {
         VStack {
-            Image(contact.imageName)
+            contact.image
                 .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 300, height: 300)
@@ -45,7 +45,6 @@ struct ContactDetail: View {
                         }
                     }
                 }
-                
             }
         }
         .offset(y: 30)
