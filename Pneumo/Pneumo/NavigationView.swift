@@ -28,8 +28,10 @@ struct Navigation: View {
                 ForEach(buttons, id: \.id) { button in
                     NavigationLink(destination: {
                             VStack {
-                                if button.text=="LIBRARY" {
+                                if button.text=="MY SCANS" {
                                     Library()
+                                } else if 0==1 {
+                                    
                                 } else {
                                     AboutPage()
                                 }
