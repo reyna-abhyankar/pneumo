@@ -10,11 +10,11 @@ import SwiftUI
 
 struct Navigation: View {
     let buttons = [WelcomeButtons(imageName: "camera.viewfinder",
-                                  text: "SCAN"),
-                   WelcomeButtons(imageName: "icloud.and.arrow.up",
-                                  text: "UPLOAD"),
-                   WelcomeButtons(imageName: "archivebox",
-                                  text: "LIBRARY")]
+                                  text: "MY SCANS"),
+                   WelcomeButtons(imageName: "book",
+                                  text: "RESOURCES"),
+                   WelcomeButtons(imageName: "info.circle",
+                                  text: "ABOUT")]
     
     var body: some View {
         NavigationView {
