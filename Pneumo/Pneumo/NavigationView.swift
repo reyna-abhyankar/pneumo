@@ -23,15 +23,14 @@ struct Navigation: View {
                     .font(.system(size: 50))
                     .fontWeight(.thin)
                     .foregroundColor(Color.gray)
-                    //.offset(y:-30)
 
                 ForEach(buttons, id: \.id) { button in
                     NavigationLink(destination: {
                             VStack {
                                 if button.text=="MY SCANS" {
                                     Library()
-                                } else if 0==1 {
-                                    
+                                } else if button.text=="RESOURCES" {
+                                    Curb65()
                                 } else {
                                     AboutPage()
                                 }
