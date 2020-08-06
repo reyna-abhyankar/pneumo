@@ -21,17 +21,17 @@ struct ContactDetail: View {
     
     var body: some View {
         VStack {
-            contact.image
-                .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 300, height: 300)
-                .clipped()
-                .cornerRadius(30)
-                .shadow(radius: 3)
             Text(contact.name)
                 .font(.title)
                 .fontWeight(.light)
                 .padding(5)
+            contact.image
+                .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 300, height: 300)
+                .clipShape(Circle())
+                .shadow(radius: 10)
+                .overlay(Circle().stroke(Color.gray, lineWidth: 5))
             
             Form {
                 Section {
@@ -42,6 +42,10 @@ struct ContactDetail: View {
                             Text(self.iterableInfo[num])
                                 .foregroundColor(.gray)
                                 .font(.callout)
+                                .padding(EdgeInsets(top: 15, leading: 10, bottom: 15, trailing: 10))
+                            .onAppear {
+                               UITableView.appearance().backgroundColor = .white
+                            }
                         }
                     }
                 }
@@ -50,6 +54,7 @@ struct ContactDetail: View {
         .offset(y: 30)
         .navigationBarTitle("Patient Detail")
         .navigationBarItems(trailing: EditButton())
+        .background(Color.white)
     }
 }
 
