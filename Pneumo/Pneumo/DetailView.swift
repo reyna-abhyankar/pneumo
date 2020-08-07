@@ -9,10 +9,18 @@
 import SwiftUI
 
 struct DetailView: View {
+    
     @Binding var addMode: Bool
     @Binding var contact: Contact
     
     @State var showCaptureImageView: Bool = false
+    
+    var sex = ["Male", "Female", "Unspecified"]
+    @State private var selectedSex = 0
+    @State private var selectedDate = Date()
+    
+    var age = ["1", "2", "3"]
+    @State private var selectedAge = 0
     
     var ageProxy: Binding<String> {
         Binding<String>(
@@ -24,6 +32,12 @@ struct DetailView: View {
             }
         )
     }
+
+    var dateFormatter: DateFormatter {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .long
+            return formatter
+        }
     
     var body: some View {
         NavigationView {
@@ -34,21 +48,28 @@ struct DetailView: View {
                     Text("Choose photo")
                 }
 
+                Form {
+                    
                 TextField("Enter name here...", text: self.$contact.name)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                 TextField("Enter diagnosis here...", text: self.$contact.diagnosis)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
-                TextField("Enter date here...", text: self.$contact.date)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                TextField("Enter age here...", text: ageProxy)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                TextField("Enter sex here...", text: self.$contact.sex)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
+                
+
+                    DatePicker("Date", selection: $selectedDate, displayedComponents: .date)
+                    Picker(selection: $selectedSex, label: Text("Patient Sex")) {
+                    ForEach(0 ..< sex.count) {
+                       Text(self.sex[$0])
+                    }
+                }
+                    Picker(selection: $selectedAge, label: Text("Patient Age")) {
+                    ForEach(0 ..< age.count) {
+                        Text(self.age[$0])
+                    }
+                    }
+                }
             }
             .navigationBarTitle("Add Patient", displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
@@ -61,11 +82,14 @@ struct DetailView: View {
             }
         }
     }
-}
+
+
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
         DetailView(addMode: .constant(true), contact: .constant(Contact()))
     }
 }
+}
+
 

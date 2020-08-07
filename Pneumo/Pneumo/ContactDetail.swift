@@ -17,7 +17,7 @@ struct ContactDetail: View {
     init(contact: Contact) {
         iterableInfo = [contact.diagnosis, contact.date, String(contact.age), contact.sex]
         self.contact = contact
-        UITableView.appearance().separatorStyle = .none
+        
     }
     
     var body: some View {
