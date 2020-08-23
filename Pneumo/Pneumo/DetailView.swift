@@ -34,10 +34,10 @@ struct DetailView: View {
     }
 
     var dateFormatter: DateFormatter {
-            let formatter = DateFormatter()
-            formatter.dateStyle = .long
-            return formatter
-        }
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        return formatter
+    }
     
     var body: some View {
         NavigationView {
@@ -49,26 +49,26 @@ struct DetailView: View {
                 }
 
                 Form {
+                    TextField("Enter name here...", text: self.$contact.name)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
                     
-                TextField("Enter name here...", text: self.$contact.name)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                TextField("Enter diagnosis here...", text: self.$contact.diagnosis)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                
-
+                    TextField("Enter diagnosis here...", text: self.$contact.diagnosis)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
+                    
                     DatePicker("Date", selection: $selectedDate, displayedComponents: .date)
+                    
                     Picker(selection: $selectedSex, label: Text("Patient Sex")) {
-                    ForEach(0 ..< sex.count) {
-                       Text(self.sex[$0])
+                        ForEach(0 ..< sex.count) {
+                           Text(self.sex[$0])
+                        }
                     }
-                }
-                    Picker(selection: $selectedAge, label: Text("Patient Age")) {
-                    ForEach(0 ..< age.count) {
-                        Text(self.age[$0])
-                    }
-                    }
+                    
+                    TextField("Enter age here...", text: ageProxy)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .keyboardType(.numberPad)
+                        .padding()
                 }
             }
             .navigationBarTitle("Add Patient", displayMode: .inline)
@@ -82,7 +82,7 @@ struct DetailView: View {
             }
         }
     }
-
+}
 
 
 struct DetailView_Previews: PreviewProvider {
@@ -90,6 +90,3 @@ struct DetailView_Previews: PreviewProvider {
         DetailView(addMode: .constant(true), contact: .constant(Contact()))
     }
 }
-}
-
-
