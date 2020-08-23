@@ -30,6 +30,15 @@ struct Contact: Identifiable {
     init() {
         self.init(imageName: "P4", name: "", diagnosis: "", date: Date(), age: 0, sex: "")
     }
+    
+    mutating func reset() {
+        self.image = Image("P4")
+        self.name = ""
+        self.diagnosis = ""
+        self.date = Date()
+        self.age = 0
+        self.sex = ""
+    }
 }
 
 

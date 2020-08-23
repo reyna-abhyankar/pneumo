@@ -50,7 +50,7 @@ struct Library: View {
     
     func add() {
         if !didCancel { contacts.append(contact) }
-        contact = Contact()
+        contact.reset()
     }
     
     func move(source: IndexSet, destination: Int) {
