@@ -15,7 +15,9 @@ struct ContactDetail: View {
     let leftText = ["Diagnosis", "Diagnosis Date", "Age", "Sex"]
     
     init(contact: Contact) {
-        iterableInfo = [contact.diagnosis, contact.date, String(contact.age), contact.sex]
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        iterableInfo = [contact.diagnosis, formatter.string(from: contact.date), String(contact.age), contact.sex]
         self.contact = contact
         
     }
@@ -62,7 +64,7 @@ struct ContactDetail: View {
 
 struct ContactDetail_Previews: PreviewProvider {
     static var previews: some View {
-        ContactDetail(contact: Contact(imageName: "P4", name: "Patient 1", diagnosis: "Pnuemonia", date: "01/26/18", age: 23, sex: "Female"))
+        ContactDetail(contact: Contact(imageName: "P4", name: "Patient 1", diagnosis: "Pnuemonia", date: Date(timeIntervalSinceNow: 0), age: 23, sex: "Female"))
     }
 }
 

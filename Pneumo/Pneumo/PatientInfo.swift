@@ -13,12 +13,12 @@ struct Contact: Identifiable {
     var image: Image
     var name: String
     var diagnosis: String
-    var date: String
-    var age: Int
+    var date: Date
+    var age: Double
     var sex: String
     var id = UUID()
     
-    init(imageName: String, name: String, diagnosis: String, date: String, age: Int, sex: String) {
+    init(imageName: String, name: String, diagnosis: String, date: Date, age: Double, sex: String) {
         self.image = Image(imageName)
         self.name = name
         self.diagnosis = diagnosis
@@ -28,7 +28,7 @@ struct Contact: Identifiable {
     }
     
     init() {
-        self.init(imageName: "P4", name: "", diagnosis: "", date: "", age: 0, sex: "")
+        self.init(imageName: "P4", name: "", diagnosis: "", date: Date(), age: 0, sex: "")
     }
 }
 
