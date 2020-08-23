@@ -11,6 +11,7 @@ import SwiftUI
 struct Library: View {
     @State private var isEditable = false
     @State private var addMode = false
+    @State private var didCancel = false
     @State private var contact: Contact = Contact()
     
     @State private var contacts = [
@@ -40,13 +41,15 @@ struct Library: View {
         }) {
             Image(systemName: "plus")
         }).sheet(isPresented: $addMode) {
-            DetailView(addMode: self.$addMode, contact: self.$contact)
+            DetailView(addMode: self.$addMode,
+                       contact: self.$contact,
+                       didCancel: self.$didCancel)
                 .onDisappear(perform: self.add)
         }
     }
     
     func add() {
-        contacts.append(contact)
+        if !didCancel { contacts.append(contact) }
         contact = Contact()
     }
     

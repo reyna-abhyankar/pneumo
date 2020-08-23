@@ -12,17 +12,21 @@ struct DetailView: View {
     
     @Binding var addMode: Bool
     @Binding var contact: Contact
+    @Binding var didCancel: Bool
     
     @State var showCaptureImageView: Bool = false
     @State private var selectedSex = 0
     
+    @State var image: Image? = nil
+    @State var buttonEnabled: Bool = false
+    
     var sex = ["Female", "Male", "Unspecified"]
 
-    var dateFormatter: DateFormatter {
+    /*var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateStyle = .long
         return formatter
-    }
+    }*/
     
     var body: some View {
         NavigationView {
@@ -48,30 +52,54 @@ struct DetailView: View {
                         DatePicker("Date", selection: self.$contact.date, displayedComponents: .date)
                         
                         Picker(selection: $selectedSex, label: Text("Sex")) {
-                            ForEach(0 ..< sex.count) {
+                            ForEach(0 ..< sex.count, id:\.self) {
                                 Text(self.sex[$0])
                             }
                         }
                     }
                     Section {
-                        Button(action: {
-                            self.showCaptureImageView.toggle()
-                        }) {
-                            Text("Choose scan for diagnosis")
+                        VStack {
+                            Spacer()
+                            Button(action: {
+                                self.showCaptureImageView.toggle()
+                            }) {
+                                Text("Choose scan for diagnosis")
+                            }.disabled(buttonEnabled)
+                            Spacer()
+                            HStack {
+                                image?.resizable()
+                                    .frame(width: 250, height: 250)
+                                    .padding()
+                                Button(action: {
+                                    print("Clicked")
+                                }) {
+                                    Text("Diagnose")
+                                }
+                                .disabled(!buttonEnabled)
+                                .frame(height: buttonEnabled ? nil : 0)
+                                .opacity(buttonEnabled ? 1 : 0)
+                            }
                         }
                     }
                 }
             }
             .navigationBarTitle("Add Patient", displayMode: .inline)
-            .navigationBarItems(trailing: Button(action: {
+            .navigationBarItems(leading: Button(action: {
+                self.didCancel = true
+                self.addMode = false
+            }) {
+                Text("Cancel")
+            }, trailing: Button(action: {
                 self.contact.sex = self.sex[self.selectedSex]
+                self.contact.image = self.image ?? Image("P4")
                 self.addMode = false
             }) {
                 Text("Done").bold()
             }.disabled(self.$contact.name.wrappedValue==""))
             .sheet(isPresented: $showCaptureImageView) {
                 CaptureImageView(isShown: self.$showCaptureImageView,
-                                 image: self.$contact.image)
+                                 image: self.$image,
+                                 enabled: self.$buttonEnabled)
             }
         }
     }
@@ -80,6 +108,6 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(addMode: .constant(true), contact: .constant(Contact()))
+        DetailView(addMode: .constant(true), contact: .constant(Contact()), didCancel: .constant(false))
     }
 }
