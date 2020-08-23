@@ -12,12 +12,12 @@ struct ContactDetail: View {
     
     var iterableInfo: [String]
     var contact: Contact
-    let leftText = ["Diagnosis", "Diagnosis Date", "Age", "Sex"]
+    let leftText = ["Diagnosis", "Diagnosis Date", "Date of Birth", "Sex"]
     
     init(contact: Contact) {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
-        iterableInfo = [contact.diagnosis, formatter.string(from: contact.date), String(contact.age), contact.sex]
+        iterableInfo = [contact.diagnosis, formatter.string(from: contact.date), formatter.string(from: contact.bday), contact.sex]
         self.contact = contact
         
     }
@@ -27,14 +27,14 @@ struct ContactDetail: View {
             Text(contact.name)
                 .font(.title)
                 .fontWeight(.light)
-                .padding(5)
+                .padding(15)
             contact.image
                 .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 300, height: 300)
-                .clipShape(Circle())
-                .shadow(radius: 10)
-                .overlay(Circle().stroke(Color.gray, lineWidth: 5))
+                //.clipShape(Circle())
+                .shadow(radius: 4)
+                //.overlay(Circle().stroke(Color.gray, lineWidth: 5))
             
             Form {
                 Section {
@@ -56,7 +56,6 @@ struct ContactDetail: View {
         }
         .offset(y: 30)
         .navigationBarTitle("Patient Detail")
-        .navigationBarItems(trailing: EditButton())
         .background(Color.white)
     }
 }
@@ -64,7 +63,7 @@ struct ContactDetail: View {
 
 struct ContactDetail_Previews: PreviewProvider {
     static var previews: some View {
-        ContactDetail(contact: Contact(imageName: "P4", name: "Patient 1", diagnosis: "Pnuemonia", date: Date(timeIntervalSinceNow: 0), age: 23, sex: "Female"))
+        ContactDetail(contact: Contact(imageName: "P4", name: "Patient 1", diagnosis: "Pnuemonia", date: Date(timeIntervalSinceNow: 0), bday: Date(timeIntervalSince1970: 0), sex: "Female"))
     }
 }
 

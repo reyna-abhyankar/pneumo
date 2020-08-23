@@ -15,9 +15,9 @@ struct Library: View {
     @State private var contact: Contact = Contact()
     
     @State private var contacts = [
-        Contact(imageName: "P4", name: "Patient 1", diagnosis: "Pnuemonia", date: Date(timeIntervalSinceNow: 0), age: 23, sex: "Female"),
-        Contact(imageName: "P4", name: "Patient 2", diagnosis: "Not Pnuemonia", date: Date(timeIntervalSinceNow: 0), age: 32, sex: "Female"),
-        Contact(imageName: "P4", name: "Patient 3", diagnosis: "Covid Pnuemonia", date: Date(timeIntervalSinceNow: 0), age: 18, sex: "Female")
+        Contact(imageName: "P4", name: "Patient 1", diagnosis: "Pnuemonia", date: Date(timeIntervalSinceNow: 0), bday: Date(timeIntervalSince1970: 0), sex: "Female"),
+        Contact(imageName: "P4", name: "Patient 2", diagnosis: "Not Pnuemonia", date: Date(timeIntervalSinceNow: 0), bday: Date(timeIntervalSince1970: 0), sex: "Female"),
+        Contact(imageName: "P4", name: "Patient 3", diagnosis: "Covid Pnuemonia", date: Date(timeIntervalSinceNow: 0), bday: Date(timeIntervalSince1970: 0), sex: "Female")
     ]
     
     var body: some View {

@@ -14,21 +14,21 @@ struct Contact: Identifiable {
     var name: String
     var diagnosis: String
     var date: Date
-    var age: Double
+    var bday: Date
     var sex: String
     var id = UUID()
     
-    init(imageName: String, name: String, diagnosis: String, date: Date, age: Double, sex: String) {
+    init(imageName: String, name: String, diagnosis: String, date: Date, bday: Date, sex: String) {
         self.image = Image(imageName)
         self.name = name
         self.diagnosis = diagnosis
         self.date = date
-        self.age = age
+        self.bday = bday
         self.sex = sex
     }
     
     init() {
-        self.init(imageName: "P4", name: "", diagnosis: "", date: Date(), age: 0, sex: "")
+        self.init(imageName: "P4", name: "", diagnosis: "", date: Date(), bday: Date(timeIntervalSince1970: 0), sex: "")
     }
     
     mutating func reset() {
@@ -36,7 +36,7 @@ struct Contact: Identifiable {
         self.name = ""
         self.diagnosis = ""
         self.date = Date()
-        self.age = 0
+        self.bday = Date(timeIntervalSince1970: 0)
         self.sex = ""
     }
 }

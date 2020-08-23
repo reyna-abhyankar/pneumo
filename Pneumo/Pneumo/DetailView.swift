@@ -21,12 +21,6 @@ struct DetailView: View {
     @State var buttonEnabled: Bool = false
     
     var sex = ["Female", "Male", "Unspecified"]
-
-    /*var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        return formatter
-    }*/
     
     var body: some View {
         NavigationView {
@@ -40,16 +34,9 @@ struct DetailView: View {
                                 .padding()
                         }
                         
-                        HStack {
-                            Text("Age (years)")
-                            TextField("Enter age here...", value: self.$contact.age, formatter: NumberFormatter())
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .keyboardType(.decimalPad)
-                                .padding()
-                        }
+                        DatePicker("Date of birth", selection: self.$contact.bday, displayedComponents: .date)
  
-                        
-                        DatePicker("Date", selection: self.$contact.date, displayedComponents: .date)
+                        DatePicker("Date of entry", selection: self.$contact.date, displayedComponents: .date)
                         
                         Picker(selection: $selectedSex, label: Text("Sex")) {
                             ForEach(0 ..< sex.count, id:\.self) {
