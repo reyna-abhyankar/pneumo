@@ -11,8 +11,8 @@ import SwiftUI
 struct Navigation: View {
     let buttons = [WelcomeButtons(imageName: "camera.viewfinder",
                                   text: "MY SCANS"),
-                   WelcomeButtons(imageName: "book",
-                                  text: "RESOURCES"),
+                   WelcomeButtons(imageName: "doc.on.clipboard",
+                                  text: "CURB-65"),
                    WelcomeButtons(imageName: "info.circle",
                                   text: "ABOUT")]
     

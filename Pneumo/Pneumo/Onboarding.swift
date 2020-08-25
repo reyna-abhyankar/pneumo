@@ -26,7 +26,7 @@ struct Onboarding: View {
                                             imgWidth: 350,
                                             imgHeight: 300),
                              WelcomeButtons(imageName: "P2",
-                                            text: "Scan or upload chest x-rays, and our algorithms will provide different diagnoses.",
+                                            text: "Scan or upload chest x-rays, and our algorithms will provide different prognoses.",
                                             imgWidth: 280,
                                             imgHeight: 270),
                              WelcomeButtons(imageName: "P3",
