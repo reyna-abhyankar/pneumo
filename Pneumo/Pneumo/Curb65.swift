@@ -16,7 +16,7 @@ struct Curb65: View {
                 "Age ≥ 65"]
 
     @State private var toggleArr = [false, false, false, false, false]
-
+    
     var body: some View {
         VStack {
             VStack {
@@ -39,10 +39,19 @@ struct Curb65: View {
             .toggleStyle(MyToggleStyle())
             .padding(EdgeInsets(top: 15, leading: 10, bottom: 15, trailing: 10))
             .navigationBarTitle("Resources", displayMode: .inline)
+            
+            Text("Number of risk factors: \(getNumTrue(arr: toggleArr))")
         }
     }
+    
+    func getNumTrue(arr: Array<Bool>) -> Int {
+        var count = 0
+        for val in arr {
+            if val { count += 1 }
+        }
+        return count
+    }
 }
-
 
 struct MyToggleStyle: ToggleStyle {
     let width: CGFloat = 50
@@ -68,10 +77,10 @@ struct MyToggleStyle: ToggleStyle {
             }
         }
     }
+}
 
-    struct Curb65_Previews: PreviewProvider {
-        static var previews: some View {
-            Curb65()
-        }
+struct Curb65_Previews: PreviewProvider {
+    static var previews: some View {
+        Curb65()
     }
 }
