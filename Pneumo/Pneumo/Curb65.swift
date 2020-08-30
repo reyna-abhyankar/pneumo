@@ -14,6 +14,15 @@ struct Curb65: View {
                 "Respiratory Rate ≥ 30",
                 "SBP < 90 mmHg or DBP ≤ 60 mmHg",
                 "Age ≥ 65"]
+    
+    let groups = ["Low risk", "Low risk", "Moderate risk", "Severe risk", "Highest risk", "Highest risk"]
+    
+    let score = ["0.6% 30-day mortality.\nConsider outpatient treatment.",
+                "2.7% 30-day mortality.\nConsider outpatient treatment.",
+                "6.8% 30-day mortality.\nConsider inpatient treatment or outpatient with close follow-up.",
+                "14.0% 30-day mortality.\nConsider inpatient treatment with possible intensive care admission.",
+                "27.8% 30-day mortality.\nConsider inpatient treatment with possible intensive care admission.",
+                "27.8% 30-day mortality.\nConsider inpatient treatment with possible intensive care admission."]
 
     @State private var toggleArr = [false, false, false, false, false]
     
@@ -24,7 +33,7 @@ struct Curb65: View {
                 .fontWeight(.light)
                 .foregroundColor(Color("DarkShade"))
                 .padding()
-                .offset(y: -60)
+                .offset(y: -40)
             VStack {
                 ForEach (0 ..< tests.count) { index in
                     VStack(alignment: .leading) {
@@ -52,10 +61,12 @@ struct Curb65: View {
             .navigationBarTitle("Resources", displayMode: .inline)
             
             VStack {
-                Text("Number of risk factors: \(getNumTrue(arr: toggleArr))")
+                Text("\(groups[getNumTrue(arr: toggleArr)])")
                     .font(.title)
                     .fontWeight(.light)
                     .foregroundColor(Color.black)
+                    .padding(.bottom, 10)
+                Text("\(score[getNumTrue(arr: toggleArr)])")
             }.padding(20)
             .overlay(
                 RoundedRectangle(cornerRadius: 16)

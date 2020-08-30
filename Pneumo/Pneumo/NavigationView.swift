@@ -29,7 +29,7 @@ struct Navigation: View {
                             VStack {
                                 if button.text=="MY SCANS" {
                                     Library()
-                                } else if button.text=="RESOURCES" {
+                                } else if button.text=="CURB-65" {
                                     Curb65()
                                 } else {
                                     AboutPage()
