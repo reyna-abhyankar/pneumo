@@ -33,12 +33,11 @@ struct Curb65: View {
                 .fontWeight(.light)
                 .foregroundColor(Color("DarkShade"))
                 .padding()
-                .offset(y: -40)
+                .offset(y: -20)
             VStack {
                 ForEach (0 ..< tests.count) { index in
                     VStack(alignment: .leading) {
                         Text("\(self.tests[index])").font(.system(size: 18, weight: .semibold)).lineLimit(2)
-                            Divider()
                         HStack {
                             if self.toggleArr[index] {
                                 Text("Yes")
@@ -50,27 +49,33 @@ struct Curb65: View {
                             Spacer()
                             Toggle("", isOn: self.$toggleArr[index])
                         }
+                        Divider()
                     }
                     .padding(.leading, 30)
                     .padding(.trailing, 30)
                     .padding(.top, 10)
                 }
-            }.offset(y: -50)
+            }.offset(y: -30)
             .toggleStyle(MyToggleStyle())
             .padding(EdgeInsets(top: 15, leading: 10, bottom: 15, trailing: 10))
             .navigationBarTitle("Resources", displayMode: .inline)
             
-            VStack {
-                Text("\(groups[getNumTrue(arr: toggleArr)])")
-                    .font(.title)
-                    .fontWeight(.light)
-                    .foregroundColor(Color.black)
-                    .padding(.bottom, 10)
-                Text("\(score[getNumTrue(arr: toggleArr)])")
-            }.padding(20)
-            .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(Color("Accent2"), lineWidth: 2))
+            ZStack {
+                Rectangle()
+                .frame(width: 350, height: 150)
+                .border(Color("Accent2"), width: 3)
+                .foregroundColor(.white)
+                VStack {
+                    Text("\(groups[getNumTrue(arr: toggleArr)])")
+                        .font(.title)
+                        .fontWeight(.light)
+                        .foregroundColor(Color.black)
+                        .offset(y: 10)
+                    Text("\(score[getNumTrue(arr: toggleArr)])")
+                        .multilineTextAlignment(.center)
+                        .frame(width: 330.0, height: 100.0)
+                }
+            }
         }
     }
     
