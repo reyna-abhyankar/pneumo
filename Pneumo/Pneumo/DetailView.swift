@@ -55,7 +55,7 @@ struct DetailView: View {
                             }.disabled(buttonEnabled)
                             Spacer()
                             HStack {
-                                Image(uiImage: (image ?? UIImage(named: "P4"))!)
+                                Image(uiImage: (image ?? UIImage(named: "P4"))!)  // *very* slightly rounded edges?
                                     .resizable()
                                     .frame(width: 250, height: 250)
                                     .padding()
@@ -84,7 +84,7 @@ struct DetailView: View {
                 Text("Cancel")
             }, trailing: Button(action: {
                 self.contact.sex = self.sex[self.selectedSex]
-                self.contact.image = self.image ?? UIImage(named: "P4")! // change this image to blank pfp type
+                self.contact.image = self.image ?? UIImage(named: "P4")! // change this image to blank facebook pfp type
                 self.addMode = false
             }) {
                 Text("Done").bold()
