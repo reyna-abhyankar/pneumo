@@ -71,7 +71,7 @@ struct PatientRow: View {
     let contact: Contact
     var body: some View {
         HStack {
-            contact.image
+            Image(uiImage: contact.image)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 130, height: 130)

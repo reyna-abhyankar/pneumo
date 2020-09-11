@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 struct Contact: Identifiable {
-    var image: Image
+    var image: UIImage
     var name: String
     var diagnosis: String
     var date: Date
@@ -19,7 +19,7 @@ struct Contact: Identifiable {
     var id = UUID()
     
     init(imageName: String, name: String, diagnosis: String, date: Date, bday: Date, sex: String) {
-        self.image = Image(imageName)
+        self.image = UIImage(named: imageName)!
         self.name = name
         self.diagnosis = diagnosis
         self.date = date
@@ -32,7 +32,7 @@ struct Contact: Identifiable {
     }
     
     mutating func reset() {
-        self.image = Image("P4")
+        self.image = UIImage(named: "P4")!
         self.name = ""
         self.diagnosis = ""
         self.date = Date()

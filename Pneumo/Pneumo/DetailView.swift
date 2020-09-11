@@ -15,10 +15,11 @@ struct DetailView: View {
     @Binding var didCancel: Bool
     
     @State var showCaptureImageView: Bool = false
-    @State private var selectedSex = 0
     
-    @State var image: Image? = nil
-    @State var buttonEnabled: Bool = false
+    @State private var selectedSex = 0
+    @State private var image: UIImage? = nil
+    @State private var buttonEnabled: Bool = false
+    @State private var classificationLabel: String = ""
     
     var sex = ["Female", "Male", "Unspecified"]
     
@@ -54,17 +55,22 @@ struct DetailView: View {
                             }.disabled(buttonEnabled)
                             Spacer()
                             HStack {
-                                image?.resizable()
+                                Image(uiImage: (image ?? UIImage(named: "P4"))!)
+                                    .resizable()
                                     .frame(width: 250, height: 250)
                                     .padding()
-                                Button(action: {
-                                    print("Clicked")
-                                }) {
-                                    Text("Diagnose")
+                                VStack {
+                                    Button(action: {
+                                        self.diagnoseImage()
+                                        self.contact.diagnosis = self.classificationLabel
+                                    }) {
+                                        Text("Diagnose")
+                                    }
+                                        .disabled(!buttonEnabled)
+                                        .frame(height: buttonEnabled ? nil : 0)
+                                        .opacity(buttonEnabled ? 1 : 0)
+                                    Text(self.classificationLabel)
                                 }
-                                .disabled(!buttonEnabled)
-                                .frame(height: buttonEnabled ? nil : 0)
-                                .opacity(buttonEnabled ? 1 : 0)
                             }
                         }
                     }
@@ -78,16 +84,32 @@ struct DetailView: View {
                 Text("Cancel")
             }, trailing: Button(action: {
                 self.contact.sex = self.sex[self.selectedSex]
-                self.contact.image = self.image ?? Image("P4")
+                self.contact.image = self.image ?? UIImage(named: "P4")! // change this image to blank pfp type
                 self.addMode = false
             }) {
                 Text("Done").bold()
-            }.disabled(self.$contact.name.wrappedValue==""))
+            }.disabled(self.$contact.name.wrappedValue=="" || self.$contact.diagnosis.wrappedValue==""))
             .sheet(isPresented: $showCaptureImageView) {
                 CaptureImageView(isShown: self.$showCaptureImageView,
                                  image: self.$image,
                                  enabled: self.$buttonEnabled)
             }
+        }
+    }
+    
+    func diagnoseImage() {
+        let model = PneumoModel()
+        
+        guard let resizedImage = self.image?.resizeTo(size: CGSize(width: 299, height: 299)),
+            let buffer = resizedImage.toBuffer() else {
+                return
+        }
+        
+        do {
+            let prediction = try model.prediction(image: buffer)
+            self.classificationLabel = prediction.classLabel
+        } catch {
+            print("Error")
         }
     }
 }

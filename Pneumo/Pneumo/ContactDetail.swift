@@ -28,10 +28,11 @@ struct ContactDetail: View {
                 .font(.title)
                 .fontWeight(.light)
                 .padding(15)
-            contact.image
+            Image(uiImage: contact.image)
                 .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 300, height: 300)
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 250, height: 250)     // change this to be square on-screen
+                                                    // (use image height and width)
                 //.clipShape(Circle())
                 .shadow(radius: 4)
                 //.overlay(Circle().stroke(Color.gray, lineWidth: 5))

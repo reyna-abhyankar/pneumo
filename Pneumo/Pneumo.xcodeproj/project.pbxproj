@@ -27,6 +27,8 @@
 		82CB562424B269D900A8798C /* PneumoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CB562324B269D900A8798C /* PneumoUITests.swift */; };
 		82E98ACC24D7D3550086D13A /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E98ACB24D7D3550086D13A /* ImageView.swift */; };
 		82E98ACE24D7D3930086D13A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E98ACD24D7D3930086D13A /* Coordinator.swift */; };
+		82F20479250BF00C005E7E8D /* PneumoModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 82F20478250BF00C005E7E8D /* PneumoModel.mlmodel */; };
+		82F2047B250BF487005E7E8D /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F2047A250BF487005E7E8D /* UIImage+Additions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		82CB562524B269D900A8798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82E98ACB24D7D3550086D13A /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		82E98ACD24D7D3930086D13A /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		82F20478250BF00C005E7E8D /* PneumoModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = PneumoModel.mlmodel; sourceTree = "<group>"; };
+		82F2047A250BF487005E7E8D /* UIImage+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +142,8 @@
 				20753D0724B8371F001EE807 /* ContactDetail.swift */,
 				20C0D1E024CA90A300E76F41 /* AboutPage.swift */,
 				20C0D22424DCA62000E76F41 /* Curb65.swift */,
+				82F2047A250BF487005E7E8D /* UIImage+Additions.swift */,
+				82F20478250BF00C005E7E8D /* PneumoModel.mlmodel */,
 				82CB560724B269D900A8798C /* Assets.xcassets */,
 				82CB560C24B269D900A8798C /* LaunchScreen.storyboard */,
 				82CB560F24B269D900A8798C /* Info.plist */,
@@ -303,12 +309,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82F20479250BF00C005E7E8D /* PneumoModel.mlmodel in Sources */,
 				20753D0224B5BC14001EE807 /* Onboarding.swift in Sources */,
 				20C44C5D24E4BF510041C507 /* ViewRouter.swift in Sources */,
 				20753D0424B827AF001EE807 /* Library.swift in Sources */,
 				82CB560224B269D600A8798C /* AppDelegate.swift in Sources */,
 				20C44C5F24E4BFBD0041C507 /* MotherView.swift in Sources */,
 				82CB560424B269D600A8798C /* SceneDelegate.swift in Sources */,
+				82F2047B250BF487005E7E8D /* UIImage+Additions.swift in Sources */,
 				82E98ACC24D7D3550086D13A /* ImageView.swift in Sources */,
 				20C0D22524DCA62000E76F41 /* Curb65.swift in Sources */,
 				20C0D1E124CA90A300E76F41 /* AboutPage.swift in Sources */,

@@ -11,10 +11,10 @@ import SwiftUI
 class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     @Binding var isCoordinatorShown: Bool
-    @Binding var imageInCoordinator: Image?
+    @Binding var imageInCoordinator: UIImage?
     @Binding var diagnosisEnabled: Bool
     
-    init(isShown: Binding<Bool>, image: Binding<Image?>, enabled: Binding<Bool>) {
+    init(isShown: Binding<Bool>, image: Binding<UIImage?>, enabled: Binding<Bool>) {
         _isCoordinatorShown = isShown
         _imageInCoordinator = image
         _diagnosisEnabled = enabled
@@ -23,7 +23,7 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let unwrapImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
-        imageInCoordinator = Image(uiImage: unwrapImage)
+        imageInCoordinator = unwrapImage
         diagnosisEnabled = true
         isCoordinatorShown = false
     }
