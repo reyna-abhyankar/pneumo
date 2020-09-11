@@ -11,6 +11,7 @@
 		20753D0424B827AF001EE807 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20753D0324B827AF001EE807 /* Library.swift */; };
 		20753D0624B8310B001EE807 /* PatientInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20753D0524B8310B001EE807 /* PatientInfo.swift */; };
 		20753D0824B8371F001EE807 /* ContactDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20753D0724B8371F001EE807 /* ContactDetail.swift */; };
+		20A2E61C250C07F600090625 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A2E61B250C07F600090625 /* AnalyticsView.swift */; };
 		20C0D1E124CA90A300E76F41 /* AboutPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C0D1E024CA90A300E76F41 /* AboutPage.swift */; };
 		20C0D22524DCA62000E76F41 /* Curb65.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C0D22424DCA62000E76F41 /* Curb65.swift */; };
 		20C44C5D24E4BF510041C507 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C44C5C24E4BF510041C507 /* ViewRouter.swift */; };
@@ -53,6 +54,7 @@
 		20753D0324B827AF001EE807 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		20753D0524B8310B001EE807 /* PatientInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientInfo.swift; sourceTree = "<group>"; };
 		20753D0724B8371F001EE807 /* ContactDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetail.swift; sourceTree = "<group>"; };
+		20A2E61B250C07F600090625 /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
 		20C0D1E024CA90A300E76F41 /* AboutPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPage.swift; sourceTree = "<group>"; };
 		20C0D22424DCA62000E76F41 /* Curb65.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Curb65.swift; sourceTree = "<group>"; };
 		20C44C5C24E4BF510041C507 /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				82E98ACD24D7D3930086D13A /* Coordinator.swift */,
 				20753D0524B8310B001EE807 /* PatientInfo.swift */,
 				20753D0724B8371F001EE807 /* ContactDetail.swift */,
+				20A2E61B250C07F600090625 /* AnalyticsView.swift */,
 				20C0D1E024CA90A300E76F41 /* AboutPage.swift */,
 				20C0D22424DCA62000E76F41 /* Curb65.swift */,
 				82F2047A250BF487005E7E8D /* UIImage+Additions.swift */,
@@ -318,6 +321,7 @@
 				82CB560424B269D600A8798C /* SceneDelegate.swift in Sources */,
 				82F2047B250BF487005E7E8D /* UIImage+Additions.swift in Sources */,
 				82E98ACC24D7D3550086D13A /* ImageView.swift in Sources */,
+				20A2E61C250C07F600090625 /* AnalyticsView.swift in Sources */,
 				20C0D22524DCA62000E76F41 /* Curb65.swift in Sources */,
 				20C0D1E124CA90A300E76F41 /* AboutPage.swift in Sources */,
 				20753D0824B8371F001EE807 /* ContactDetail.swift in Sources */,
