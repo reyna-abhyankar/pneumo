@@ -15,11 +15,11 @@ struct AnalyticsView: View {
                 Image("P4")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 250, height: 250)
+                    .frame(width: 200, height: 200)
                     .border(Color.gray, width:5)
                     .offset(y: 35)
                 Text("PNEUMONIA DETECTED")
-                    .font(.largeTitle)
+                    .font(.title)
                     .fontWeight(.light)
                     .foregroundColor(Color("DarkShade"))
                     .multilineTextAlignment(.center)
@@ -52,7 +52,7 @@ struct AnalyticsView: View {
                     .padding(5)
                 Text("No Pneumonia: 3%")
                     .padding(5)
-            }.offset(y: -20)
+            }.offset(y: -30)
             HStack {
                 Text("Treatment Plans")
                     .foregroundColor(.white)
@@ -64,9 +64,11 @@ struct AnalyticsView: View {
                     .padding(20)
                     .background(Color("Accent2"))
                     .cornerRadius(100)
-            }.offset(y: -20)
+            }.offset(y: -50)
         }
+        .padding()
     }
+    
 }
 
 struct AnalyticsView_Previews: PreviewProvider {

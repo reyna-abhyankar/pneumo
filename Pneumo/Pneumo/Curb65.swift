@@ -29,7 +29,7 @@ struct Curb65: View {
     var body: some View {
         VStack {
             Text("CURB-65 ASSESSMENT")
-                .font(.largeTitle)
+                .font(.title)
                 .fontWeight(.light)
                 .foregroundColor(Color("DarkShade"))
                 .padding()
@@ -62,7 +62,7 @@ struct Curb65: View {
             
             ZStack {
                 Rectangle()
-                .frame(width: 350, height: 150)
+                .frame(width: 350, height: 130)
                 .border(Color("Accent2"), width: 3)
                 .foregroundColor(.white)
                 VStack {
@@ -70,7 +70,7 @@ struct Curb65: View {
                         .font(.title)
                         .fontWeight(.light)
                         .foregroundColor(Color.black)
-                        .offset(y: 10)
+                        .offset(y: 15)
                     Text("\(score[getNumTrue(arr: toggleArr)])")
                         .multilineTextAlignment(.center)
                         .frame(width: 330.0, height: 100.0)
