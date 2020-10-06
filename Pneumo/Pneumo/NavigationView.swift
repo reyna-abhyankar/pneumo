@@ -37,7 +37,7 @@ struct Navigation: View {
                             .frame(width: 30, height: 30, alignment: .trailing)
                             .padding(.trailing)
                     }.sheet(isPresented: $showingAbout) {
-                        AboutPage()
+                        AboutPage(showAbout: self.$showingAbout)
                     }
                 }
 
