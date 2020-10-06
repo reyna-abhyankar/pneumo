@@ -9,20 +9,37 @@
 import SwiftUI
 
 struct Navigation: View {
+    @State var showingAbout = false
     let buttons = [WelcomeButtons(imageName: "camera.viewfinder",
-                                  text: "MY SCANS"),
+                                  text: "SCAN"),
                    WelcomeButtons(imageName: "doc.on.clipboard",
                                   text: "CURB-65"),
-                   WelcomeButtons(imageName: "info.circle",
-                                  text: "ABOUT")]
+                   WelcomeButtons(imageName: "person.fill",
+                                  text: "PATIENTS")]
     
     var body: some View {
         NavigationView {
             VStack(spacing: 30) {
-                Text("HOME")
-                    .font(.system(size: 50))
-                    .fontWeight(.thin)
-                    .foregroundColor(Color.gray)
+                HStack {
+                    Spacer()
+                    Text("HOME")
+                        .font(.system(size: 50))
+                        .fontWeight(.thin)
+                        .foregroundColor(Color.gray)
+                        .frame(width: 150, height: 50, alignment: .center)
+                        .padding(.leading, 40)
+                    Spacer()
+                    Button(action: {
+                        self.showingAbout.toggle()
+                    }) {
+                        Image(systemName: "info.circle")
+                            .font(.system(size: 30, weight: .thin))
+                            .frame(width: 30, height: 30, alignment: .trailing)
+                            .padding(.trailing)
+                    }.sheet(isPresented: $showingAbout) {
+                        AboutPage()
+                    }
+                }
 
                 ForEach(buttons, id: \.id) { button in
                     NavigationLink(destination: {
@@ -32,7 +49,7 @@ struct Navigation: View {
                                 } else if button.text=="CURB-65" {
                                     Curb65()
                                 } else {
-                                    AboutPage()
+                                    Library()
                                 }
                             }
                         }()) {

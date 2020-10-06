@@ -69,8 +69,9 @@ struct Onboarding: View {
                     .multilineTextAlignment(.center)
                     .foregroundColor(Color("LightShade"))
                     .font(.title)
-                    .padding(.vertical, 60).frame(width: gr.frame(in: .global).width * 3)
-                    .frame(maxHeight: .infinity).offset(x: self.step == 1 ? gr.frame(in: .global).width+self.CONSTANT_OFFSET : self.step == 2 ? 0 : -gr.frame(in: .global).width-self.CONSTANT_OFFSET)
+                    .padding(.vertical, 60)
+                    .frame(maxHeight: .infinity)
+                    .offset(x: self.step == 1 ? 0 : self.step == 2 ? -gr.frame(in: .global).width-self.CONSTANT_OFFSET : 2*(-gr.frame(in: .global).width-self.CONSTANT_OFFSET))
                     .animation(Animation.interpolatingSpring(stiffness: 40, damping: 8))
                 }
                 HStack(spacing: 20) {
