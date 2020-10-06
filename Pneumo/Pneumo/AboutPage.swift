@@ -13,11 +13,11 @@ struct AboutPage: View {
     var body: some View {
         NavigationView {
             VStack {
-                /*Text("About")
+                Text("Why We Started")
                     .font(.title)
                     .fontWeight(.light)
                     .padding(10)
-                    .foregroundColor(Color("DarkShade"))*/
+                    .foregroundColor(Color("DarkShade"))
                 Text("Pneumonia remains a leading cause of mortality worldwide, disproportionately affecting developing countries. Chest radiology is strongly recommended when pneumonia is suspected, as it is a valuable screening tool, can analyze the severity of the disease, and guide medical treatments.")
                     .font(.system(size: 14))
                     .fontWeight(.light)
