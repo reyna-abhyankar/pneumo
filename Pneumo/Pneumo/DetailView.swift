@@ -98,16 +98,20 @@ struct DetailView: View {
     }
     
     func diagnoseImage() {
-        let model = PneumoModel()
-        
-        guard let resizedImage = self.image?.resizeTo(size: CGSize(width: 299, height: 299)),
-            let buffer = resizedImage.toBuffer() else {
-                return
-        }
-        
         do {
-            let prediction = try model.prediction(image: buffer)
-            self.classificationLabel = prediction.classLabel
+            let model = try PneumoModel(contentsOf: PneumoModel.urlOfModelInThisBundle)
+            
+            guard let resizedImage = self.image?.resizeTo(size: CGSize(width: 299, height: 299)),
+                let buffer = resizedImage.toBuffer() else {
+                    return
+            }
+            
+            do {
+                let prediction = try model.prediction(image: buffer)
+                self.classificationLabel = prediction.classLabel
+            } catch {
+                print("Error")
+            }
         } catch {
             print("Error")
         }
