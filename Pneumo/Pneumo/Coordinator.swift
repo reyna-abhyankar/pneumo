@@ -12,19 +12,19 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     
     @Binding var isCoordinatorShown: Bool
     @Binding var imageInCoordinator: UIImage?
-    @Binding var diagnosisEnabled: Bool
+    //@Binding var diagnosisEnabled: Bool
     
-    init(isShown: Binding<Bool>, image: Binding<UIImage?>, enabled: Binding<Bool>) {
+    init(isShown: Binding<Bool>, image: Binding<UIImage?>) { //}, enabled: Binding<Bool>) {
         _isCoordinatorShown = isShown
         _imageInCoordinator = image
-        _diagnosisEnabled = enabled
+        //_diagnosisEnabled = enabled
     }
     
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let unwrapImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
         imageInCoordinator = unwrapImage
-        diagnosisEnabled = true
+        //diagnosisEnabled = true
         isCoordinatorShown = false
     }
     

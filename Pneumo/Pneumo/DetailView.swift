@@ -52,7 +52,7 @@ struct DetailView: View {
                                 self.showCaptureImageView.toggle()
                             }) {
                                 Text("Choose scan for diagnosis")
-                            }.disabled(buttonEnabled)
+                            }//.disabled(buttonEnabled)
                             Spacer()
                             HStack {
                                 Image(uiImage: (image ?? UIImage(named: "P4"))!)  // *very* slightly rounded edges?
@@ -91,8 +91,8 @@ struct DetailView: View {
             }.disabled(self.$contact.name.wrappedValue=="" || self.$contact.diagnosis.wrappedValue==""))
             .sheet(isPresented: $showCaptureImageView) {
                 CaptureImageView(isShown: self.$showCaptureImageView,
-                                 image: self.$image,
-                                 enabled: self.$buttonEnabled)
+                                 image: self.$image)//,
+                                 //enabled: self.$buttonEnabled)
             }
         }
     }

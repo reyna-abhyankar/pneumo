@@ -9,7 +9,9 @@
 import SwiftUI
 
 struct Navigation: View {
-    @State var showingAbout = false
+    @State var showingAbout: Bool = false
+    @State var showCaptureImageView: Bool = false
+    @State private var image: UIImage? = nil
     let buttons = [WelcomeButtons(imageName: "camera.viewfinder",
                                   text: "SCAN"),
                    WelcomeButtons(imageName: "doc.on.clipboard",
@@ -40,33 +42,56 @@ struct Navigation: View {
                         AboutPage(showAbout: self.$showingAbout)
                     }
                 }
-
-                ForEach(buttons, id: \.id) { button in
+                
+                Button(action: {
+                    self.showCaptureImageView.toggle()
+                }, label: {
+                    CustomButton(name: buttons[0].imageName,
+                                 text: buttons[0].text)
+                })
+                
+                ForEach(1..<buttons.count) { num in
                     NavigationLink(destination: {
-                            VStack {
-                                if button.text=="MY SCANS" {
-                                    Library()
-                                } else if button.text=="CURB-65" {
-                                    Curb65()
-                                } else {
-                                    Library()
-                                }
-                            }
-                        }()) {
                         VStack {
-                            Image(systemName: button.imageName)
-                                .padding(40)
-                                .font(.system(size: 65, weight: .thin))
-                                .foregroundColor(Color("DarkShade"))
-                                .overlay(Circle().stroke(Color("DarkShade"), lineWidth: 2))
-                            Text("\(button.text)")
-                                .foregroundColor(Color.gray)
-                                //.foregroundColor(Color.purple)
+                            if buttons[num].text=="CURB-65" {
+                                Curb65()
+                            } else {
+                                Library()
+                            }
                         }
+                    }()) {
+                        CustomButton(name: buttons[num].imageName,
+                                     text: buttons[num].text)
                     }
                 }
             }.offset(y:-50)
+            .sheet(isPresented: $showCaptureImageView) {
+                CaptureImageView(isShown: self.$showCaptureImageView,
+                                 image: self.$image)
+                    .onDisappear(perform: self.check)
+            }
 
+        }
+    }
+    
+    func check() {
+        print("Done")
+    }
+}
+
+struct CustomButton: View {
+    let name: String
+    let text: String
+    var body: some View {
+        VStack {
+            Image(systemName: name)
+                .padding(40)
+                .font(.system(size: 65, weight: .thin))
+                .foregroundColor(Color("DarkShade"))
+                .overlay(Circle().stroke(Color("DarkShade"), lineWidth: 2))
+            Text(text)
+                .foregroundColor(Color.gray)
+                //.foregroundColor(Color.purple)
         }
     }
 }
