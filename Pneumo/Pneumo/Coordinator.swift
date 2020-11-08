@@ -27,7 +27,6 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
             return
         }
         imageInCoordinator = unwrapImage
-        print(imageInCoordinator)
         //diagnosisEnabled = true
         isCoordinatorShown = false
     }
