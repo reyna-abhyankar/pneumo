@@ -9,14 +9,16 @@
 import SwiftUI
 
 struct AnalyticsView: View {
+    @Binding var showView: Bool
+    @Binding var image: UIImage?
     var body: some View {
         VStack(spacing: 80) {
             VStack {
-                Image("P4")
+                Image(uiImage: (image ?? UIImage(named:"P4"))!)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 200, height: 200)
-                    .border(Color.gray, width:5)
+                    .frame(width: 280, height: 270)
+                    .border(Color.gray, width:0)
                     .offset(y: 35)
                 Text("PNEUMONIA DETECTED")
                     .font(.title)
@@ -67,12 +69,25 @@ struct AnalyticsView: View {
             }.offset(y: -50)
         }
         .padding()
+        .navigationBarTitle("Results")
+        .onDisappear(perform: {
+            self.showView = false
+            self.image = nil
+        })
     }
     
 }
 
+/*
 struct AnalyticsView_Previews: PreviewProvider {
     static var previews: some View {
         AnalyticsView()
+    }
+}
+ */
+
+struct AnalyticsView_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
     }
 }

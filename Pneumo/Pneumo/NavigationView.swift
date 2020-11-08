@@ -11,7 +11,8 @@ import SwiftUI
 struct Navigation: View {
     @State var showingAbout: Bool = false
     @State var showCaptureImageView: Bool = false
-    @State private var image: UIImage? = nil
+    @State var showAnalyticsView: Bool = false
+    @State var image: UIImage? = nil
     let buttons = [WelcomeButtons(imageName: "camera.viewfinder",
                                   text: "SCAN"),
                    WelcomeButtons(imageName: "doc.on.clipboard",
@@ -22,6 +23,12 @@ struct Navigation: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 30) {
+                NavigationLink(
+                    destination: AnalyticsView(showView: $showAnalyticsView, image: $image),
+                    isActive: $showAnalyticsView,
+                    label: {
+                        Text("")
+                    })
                 HStack {
                     Spacer()
                     Text("HOME")
@@ -62,21 +69,18 @@ struct Navigation: View {
                                      text: buttons[num].text)
                     }
                 }
-            }.offset(y:-50)
-            .sheet(isPresented: $showCaptureImageView) {
-                CaptureImageView(isShown: self.$showCaptureImageView,
-                                 image: self.$image)
-                    .onDisappear(perform: self.check)
-            }
+            }.offset(y:-70)
             .sheet(isPresented: $showingAbout) {
                 AboutPage(showAbout: self.$showingAbout)
             }
 
+        }.sheet(isPresented: $showCaptureImageView) {
+            CaptureImageView(isShown: self.$showCaptureImageView,
+                             image: self.$image)
+                .onDisappear(perform: {
+                    showAnalyticsView = (image != nil)
+                })
         }
-    }
-    
-    func check() {
-        print("Done")
     }
 }
 
@@ -92,7 +96,6 @@ struct CustomButton: View {
                 .overlay(Circle().stroke(Color("DarkShade"), lineWidth: 2))
             Text(text)
                 .foregroundColor(Color.gray)
-                //.foregroundColor(Color.purple)
         }
     }
 }

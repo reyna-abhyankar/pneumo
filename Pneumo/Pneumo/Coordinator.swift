@@ -22,8 +22,12 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let unwrapImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
+        guard let unwrapImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+            print("Nil")
+            return
+        }
         imageInCoordinator = unwrapImage
+        print(imageInCoordinator)
         //diagnosisEnabled = true
         isCoordinatorShown = false
     }
