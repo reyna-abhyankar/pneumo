@@ -23,8 +23,8 @@ struct Onboarding: View {
     
     let onboardingButtons = [WelcomeButtons(imageName: "P1",
                                             text: "With our powerful mobile app, pneumonia radiology analysis is made simple.",
-                                            imgWidth: 350,
-                                            imgHeight: 300),
+                                            imgWidth: 280,
+                                            imgHeight: 270),
                              WelcomeButtons(imageName: "P2",
                                             text: "Scan or upload chest x-rays, and our algorithms will provide different prognoses.",
                                             imgWidth: 280,

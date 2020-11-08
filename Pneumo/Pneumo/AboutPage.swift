@@ -12,7 +12,7 @@ struct AboutPage: View {
     @Binding var showAbout: Bool
     var body: some View {
         NavigationView {
-            VStack {
+            ScrollView {
                 Text("Why We Started")
                     .font(.title)
                     .fontWeight(.light)
@@ -24,10 +24,10 @@ struct AboutPage: View {
                     .multilineTextAlignment(.center)
                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                 Text("Despite the pressing need for a rapid, accessible and data-driven approach towards analyzing suspected x-rays for pneumonia confirmation, a current solution does not exist.")
-                .font(.system(size: 14))
-                .fontWeight(.light)
-                .multilineTextAlignment(.center)
-                .padding(10)
+                    .font(.system(size: 14))
+                    .fontWeight(.light)
+                    .multilineTextAlignment(.center)
+                    .padding(10)
                 Text("We developed Pneumo, a low-cost, high-speed, and user-friendly iOS app that utilizes artificial intelligence to rapidly determine chest x-ray scans as pneumonia positive or negative.")
                     .font(.system(size: 14))
                     .fontWeight(.light)
@@ -38,7 +38,7 @@ struct AboutPage: View {
                     .fontWeight(.light)
                     .padding(10)
                     .foregroundColor(Color("DarkShade"))
-                Text("Pneumo is developed in CoreML and XCode and uses convolutional neural network algorithms (CNN) to quickly and automatically detect the presence of community-acquired pneumonia or covid-induced pneumonia on x-ray scans. The CNN is trained on a dataset of over 10,000 images and uses characteristic pathological features including airspace opacity, lobar consolidation, and interstitial opacities to identify potential pneumonia. Pneumo has a 92% accuracy rate and SOMETHING validation rate.")
+                Text("Pneumo is developed in CoreML and XCode and uses convolutional neural network algorithms (CNN) to quickly and automatically detect the presence of community-acquired pneumonia or covid-induced pneumonia on x-ray scans. It's trained on a dataset of over 10,000 images and uses characteristic pathological features including airspace opacity, lobar consolidation, and interstitial opacities to identify potential pneumonia.")
                     .font(.system(size: 14))
                     .fontWeight(.light)
                     .multilineTextAlignment(.center)

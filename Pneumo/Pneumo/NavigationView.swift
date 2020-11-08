@@ -33,14 +33,12 @@ struct Navigation: View {
                     Spacer()
                     Button(action: {
                         self.showingAbout.toggle()
-                    }) {
+                    }, label: {
                         Image(systemName: "info.circle")
                             .font(.system(size: 30, weight: .thin))
                             .frame(width: 30, height: 30, alignment: .trailing)
                             .padding(.trailing)
-                    }.sheet(isPresented: $showingAbout) {
-                        AboutPage(showAbout: self.$showingAbout)
-                    }
+                    })
                 }
                 
                 Button(action: {
@@ -69,6 +67,9 @@ struct Navigation: View {
                 CaptureImageView(isShown: self.$showCaptureImageView,
                                  image: self.$image)
                     .onDisappear(perform: self.check)
+            }
+            .sheet(isPresented: $showingAbout) {
+                AboutPage(showAbout: self.$showingAbout)
             }
 
         }
