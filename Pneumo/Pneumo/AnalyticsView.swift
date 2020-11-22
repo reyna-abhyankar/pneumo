@@ -126,17 +126,25 @@ struct AnalyticsView: View {
             }.offset(y: -30)
             HStack {
                 Spacer()
-                Text("Treatment Plans")
-                    .foregroundColor(.white)
-                    .padding(20)
-                    .background(Color("Accent2"))
-                    .cornerRadius(100)
+                Button(action: {
+                    // TODO
+                }, label: {
+                    Text("Treatment Plans")
+                        .foregroundColor(.white)
+                        .padding(20)
+                        .background(Color("Accent2"))
+                        .cornerRadius(100)
+                })
                 Spacer()
-                Text("Save to Patient")
-                    .foregroundColor(.white)
-                    .padding(20)
-                    .background(Color("Accent2"))
-                    .cornerRadius(100)
+                Button(action: {
+                    // TODO
+                }, label: {
+                    Text("Save to Patient")
+                        .foregroundColor(.white)
+                        .padding(20)
+                        .background(Color("Accent2"))
+                        .cornerRadius(100)
+                })
                 Spacer()
             }.offset(y: -50)
         }
