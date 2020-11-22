@@ -11,15 +11,12 @@ import SwiftUI
 struct DetailView: View {
     
     @Binding var addMode: Bool
-    @Binding var contact: Contact
     @Binding var didCancel: Bool
     
-    @State var showCaptureImageView: Bool = false
-    
-    @State private var selectedSex = 0
-    @State private var image: UIImage? = nil
-    @State private var buttonEnabled: Bool = false
-    @State private var classificationLabel: String = ""
+    @State var newContact: Contact
+
+    @State var selectedSex = 0
+    @State var buttonEnabled: Bool = false
     
     var sex = ["Female", "Male", "Unspecified"]
     
@@ -30,47 +27,18 @@ struct DetailView: View {
                     Section {
                         HStack {
                             Text("Name")
-                            TextField("Enter here...", text: self.$contact.name)
+                            TextField("Enter here...", text: self.$newContact.name)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .padding()
                         }
                         
-                        DatePicker("Date of birth", selection: self.$contact.bday, displayedComponents: .date)
+                        DatePicker("Date of birth", selection: self.$newContact.bday, displayedComponents: .date)
  
-                        DatePicker("Date of entry", selection: self.$contact.date, displayedComponents: .date)
+                        DatePicker("Date of entry", selection: self.$newContact.date, displayedComponents: .date)
                         
                         Picker(selection: $selectedSex, label: Text("Sex")) {
                             ForEach(0 ..< sex.count, id:\.self) {
                                 Text(self.sex[$0])
-                            }
-                        }
-                    }
-                    Section {
-                        VStack {
-                            Spacer()
-                            Button(action: {
-                                self.showCaptureImageView.toggle()
-                            }) {
-                                Text("Choose scan for diagnosis")
-                            }//.disabled(buttonEnabled)
-                            Spacer()
-                            HStack {
-                                Image(uiImage: (image ?? UIImage(named: "P4"))!)  // *very* slightly rounded edges?
-                                    .resizable()
-                                    .frame(width: 250, height: 250)
-                                    .padding()
-                                VStack {
-                                    Button(action: {
-                                        self.diagnoseImage()
-                                        self.contact.diagnosis = self.classificationLabel
-                                    }) {
-                                        Text("Diagnose")
-                                    }
-                                        .disabled(!buttonEnabled)
-                                        .frame(height: buttonEnabled ? nil : 0)
-                                        .opacity(buttonEnabled ? 1 : 0)
-                                    Text(self.classificationLabel)
-                                }
                             }
                         }
                     }
@@ -83,37 +51,11 @@ struct DetailView: View {
             }) {
                 Text("Cancel")
             }, trailing: Button(action: {
-                self.contact.sex = self.sex[self.selectedSex]
-                self.contact.image = self.image ?? UIImage(named: "P4")! // change this image to blank facebook pfp type
+                self.newContact.sex = self.sex[self.selectedSex]
                 self.addMode = false
             }) {
                 Text("Done").bold()
-            }.disabled(self.$contact.name.wrappedValue=="" || self.$contact.diagnosis.wrappedValue==""))
-            .sheet(isPresented: $showCaptureImageView) {
-                CaptureImageView(isShown: self.$showCaptureImageView,
-                                 image: self.$image)//,
-                                 //enabled: self.$buttonEnabled)
-            }
-        }
-    }
-    
-    func diagnoseImage() {
-        do {
-            let model = try PneumoModel(contentsOf: PneumoModel.urlOfModelInThisBundle)
-            
-            guard let resizedImage = self.image?.resizeTo(size: CGSize(width: 299, height: 299)),
-                let buffer = resizedImage.toBuffer() else {
-                    return
-            }
-            
-            do {
-                let prediction = try model.prediction(image: buffer)
-                self.classificationLabel = prediction.classLabel
-            } catch {
-                print("Error")
-            }
-        } catch {
-            print("Error")
+            }.disabled(self.$newContact.name.wrappedValue==""))
         }
     }
 }
@@ -121,6 +63,6 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(addMode: .constant(true), contact: .constant(Contact()), didCancel: .constant(false))
+        DetailView(addMode: .constant(true), didCancel: .constant(false), newContact: Contact())
     }
 }

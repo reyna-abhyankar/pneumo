@@ -174,16 +174,9 @@ struct AnalyticsView: View {
     }
 }
 
-/*
-struct AnalyticsView_Previews: PreviewProvider {
-    static var previews: some View {
-        AnalyticsView()
-    }
-}
- */
 
 struct AnalyticsView_Previews: PreviewProvider {
     static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+        AnalyticsView(showView: .constant(true), image: .constant(UIImage(named: "P4")))
     }
 }

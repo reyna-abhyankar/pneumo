@@ -9,15 +9,13 @@
 import SwiftUI
 
 struct Library: View {
-    @State private var isEditable = false
-    @State private var addMode = false
-    @State private var didCancel = false
+    @State private var editMode = EditMode.inactive
     @State private var contact: Contact = Contact()
     
     @State var contacts = [
-        Contact(imageName: "P4", name: "Patient 1", diagnosis: "Pnuemonia", date: Date(timeIntervalSinceNow: 0), bday: Date(timeIntervalSince1970: 0), sex: "Female"),
-        Contact(imageName: "P4", name: "Patient 2", diagnosis: "Not Pnuemonia", date: Date(timeIntervalSinceNow: 0), bday: Date(timeIntervalSince1970: 0), sex: "Female"),
-        Contact(imageName: "P4", name: "Patient 3", diagnosis: "Covid Pnuemonia", date: Date(timeIntervalSinceNow: 0), bday: Date(timeIntervalSince1970: 0), sex: "Female")
+        Contact(imageName: "P4", name: "Patient 1", diagnosis: .Pneumonia, date: Date(timeIntervalSinceNow: 0), bday: Date(timeIntervalSince1970: 0), sex: "Female"),
+        Contact(imageName: "P4", name: "Patient 2", diagnosis: .Normal, date: Date(timeIntervalSinceNow: 0), bday: Date(timeIntervalSince1970: 0), sex: "Female"),
+        Contact(imageName: "P4", name: "Patient 3", diagnosis: .Covid, date: Date(timeIntervalSinceNow: 0), bday: Date(timeIntervalSince1970: 0), sex: "Female")
     ]
     
     var body: some View {
@@ -28,36 +26,19 @@ struct Library: View {
                 }
             }
             .onMove(perform: move)
-            .onLongPressGesture {
-                withAnimation {
-                    self.isEditable = true
-                }
-            }
+            .onDelete(perform: delete)
         }
-        .environment(\.editMode, isEditable ? .constant(.active) : .constant(.inactive))
         .navigationBarTitle("Patients", displayMode: .inline)
-        .navigationBarItems(trailing: Button(action: {
-            self.addMode = true
-        }) {
-            Image(systemName: "plus")
-        }).sheet(isPresented: $addMode) {
-            DetailView(addMode: self.$addMode,
-                       contact: self.$contact,
-                       didCancel: self.$didCancel)
-                .onDisappear(perform: self.add)
-        }
-    }
-    
-    func add() {
-        if !didCancel { contacts.append(contact) }
-        contact.reset()
+        .navigationBarItems(trailing: EditButton())
+        .environment(\.editMode, $editMode)
     }
     
     func move(source: IndexSet, destination: Int) {
         contacts.move(fromOffsets: source, toOffset: destination)
-        withAnimation {
-            self.isEditable = false
-        }
+    }
+    
+    func delete(offsets: IndexSet) {
+        contacts.remove(atOffsets: offsets)
     }
 }
 
@@ -80,7 +61,7 @@ struct PatientRow: View {
             VStack(alignment: .leading) {
                 Text(contact.name)
                     .font(.system(size: 25, weight: .light, design: .default))
-                Text(contact.diagnosis)
+                Text(contact.diagnosis.rawValue)
                     .font(.system(size: 18, weight: .thin, design: .default))
             }.offset(x: 20)
         }.padding(10)
